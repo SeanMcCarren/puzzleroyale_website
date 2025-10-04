@@ -1,15 +1,439 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Privacy Policy</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Puzzle Royale • Legal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            color-scheme: light dark;
+            --bg-gradient: radial-gradient(circle at top, #0f172a 0%, #020617 55%, #000 100%);
+            --bg-gradient-light: radial-gradient(circle at top, #eff6ff 0%, #e0f2fe 45%, #f8fafc 100%);
+            --panel-bg: rgba(15, 23, 42, 0.85);
+            --panel-bg-light: rgba(255, 255, 255, 0.92);
+            --panel-border: rgba(148, 163, 184, 0.35);
+            --tab-bg: rgba(15, 23, 42, 0.65);
+            --tab-bg-light: rgba(255, 255, 255, 0.65);
+            --tab-hover: rgba(59, 130, 246, 0.25);
+            --text-primary: #e2e8f0;
+            --text-primary-light: #0f172a;
+            --text-muted: #94a3b8;
+            --text-muted-light: #475569;
+            --accent: #60a5fa;
+            --accent-strong: #3b82f6;
+            --shadow: 0 24px 50px rgba(15, 23, 42, 0.35);
+            --shadow-light: 0 24px 50px rgba(15, 23, 42, 0.18);
+            font-size: 16px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        .tab-panel a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -2px;
+            width: 100%;
+            height: 1px;
+            background: currentColor;
+            opacity: 0.4;
+            transition: opacity 0.2s ease;
+        }
+
+        .tab-panel a:hover::after,
+        .tab-panel a:focus-visible::after {
+            opacity: 1;
+        }
+
+        .divider {
+            margin: 2.5rem 0;
+            border: 0;
+            border-top: 1px solid var(--panel-border);
+        }
+
+        .effective-date {
+            font-weight: 500;
+            color: var(--accent);
+        }
+
+        body.light .effective-date {
+            color: var(--accent-strong);
+        }
+
+        .theme-toggle {
+            position: absolute;
+            top: clamp(1.5rem, 4vw, 2.75rem);
+            right: clamp(1.5rem, 4vw, 2.75rem);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            border: 1px solid rgba(148, 163, 184, 0.45);
+            border-radius: 999px;
+            padding: 0.4rem 1rem;
+            background: rgba(15, 23, 42, 0.35);
+            color: var(--text-primary);
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.24s ease;
+            backdrop-filter: blur(8px);
+        }
+
+        body.light .theme-toggle {
+            background: rgba(248, 250, 252, 0.75);
+            color: var(--text-primary-light);
+        }
+
+        .theme-toggle:hover,
+        .theme-toggle:focus-visible {
+            outline: none;
+            border-color: rgba(96, 165, 250, 0.65);
+            transform: translateY(-1px);
+            box-shadow: 0 10px 20px rgba(37, 99, 235, 0.18);
+        }
+
+        .theme-toggle svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        footer {
+            padding: clamp(1.5rem, 2vw, 2rem) clamp(2rem, 3vw, 3rem) clamp(2rem, 4vw, 3rem);
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(15, 23, 42, 0));
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        footer a {
+            color: inherit;
+        }
+
+        @media (max-width: 720px) {
+            body {
+                padding: clamp(1.5rem, 6vw, 2.5rem);
+            }
+
+            .legal-shell {
+                border-radius: 24px;
+            }
+
+            header,
+            main,
+            footer {
+                padding-left: clamp(1.35rem, 6vw, 1.75rem);
+                padding-right: clamp(1.35rem, 6vw, 1.75rem);
+            }
+
+            .tablist {
+                padding-left: clamp(1.35rem, 6vw, 1.75rem);
+                padding-right: clamp(1.35rem, 6vw, 1.75rem);
+            }
+
+            .tab-panel ul {
+                padding-left: 1.2rem;
+            }
+
+            .theme-toggle {
+                position: static;
+                align-self: flex-end;
+            }
+        }
+    </style>
 </head>
 
 <body>
-    <h1>Privacy Policy</h1>
-    <p>Last updated: August 26, 2025</p>
-    <p>Your privacy is important... (etc) TODO</p>
+    <div class="legal-shell">
+        <button class="theme-toggle" type="button" aria-pressed="false" title="Toggle light or dark theme">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M12 18.25A6.25 6.25 0 1 0 12 5.75A6.25 6.25 0 1 0 12 18.25Z" stroke="currentColor"
+                    stroke-width="1.5"></path>
+                <path d="M12 2V3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+                <path d="M12 20.5V22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+                <path d="M4.21997 4.21997L5.27997 5.27997" stroke="currentColor" stroke-width="1.5"
+                    stroke-linecap="round"></path>
+                <path d="M18.72 18.72L19.78 19.78" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+                </path>
+                <path d="M2 12H3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+                <path d="M20.5 12H22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+                <path d="M4.21997 19.78L5.27997 18.72" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+                </path>
+                <path d="M18.72 5.27997L19.78 4.21997" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+                </path>
+            </svg>
+            Theme
+        </button>
+        <header>
+            <h1>Puzzle Royale Legal</h1>
+            <p>Review the latest policies that keep your experience transparent and compliant.</p>
+        </header>
+        <nav class="tablist" role="tablist" aria-label="Legal content tabs">
+            <button type="button" role="tab" aria-selected="true" aria-controls="privacy" id="tab-privacy"
+                data-target="privacy">Privacy Policy</button>
+            <button type="button" role="tab" aria-selected="false" aria-controls="terms" id="tab-terms"
+                data-target="terms">Terms &amp; Conditions</button>
+        </nav>
+        <main>
+            <section id="privacy" class="tab-panel active" role="tabpanel" aria-labelledby="tab-privacy">
+                <h2>Privacy Policy</h2>
+                <p class="effective-date">Last updated: 2025-10-04</p>
+                <h3>Overview</h3>
+                <p>Puzzle Royale (the "Application") is provided by Sean McCarren (the "Service Provider"). This
+                    Privacy Policy explains how we collect, use, disclose, and protect information when you use the
+                    Application or visit our website at <a href="https://www.puzzleroyale.app" target="_blank"
+                        rel="noopener noreferrer">https://www.puzzleroyale.app</a>. By using the Application you agree
+                    to the practices described here.</p>
+                <h3>Data We Collect</h3>
+                <p>We collect the following information so we can run the Application and improve it:</p>
+                <ul>
+                    <li><strong>Account and profile data:</strong> when you authenticate with Google Sign-In we receive
+                        your Google account email address, display name, and profile image (if provided by Google). You
+                        may also choose to create an in-app display name and upload or capture a profile image.</li>
+                    <li><strong>Gameplay data:</strong> match history, rankings, achievements, and other game statistics
+                        generated while you play.</li>
+                    <li><strong>Diagnostic and usage data (third parties):</strong> Google Play Services, Google
+                        Analytics for Firebase, and Firebase Crashlytics automatically collect device identifiers, app
+                        version, performance metrics, and crash reports. Their privacy policies govern their handling of
+                        this data:
+                        <ul>
+                            <li><a href="https://www.google.com/policies/privacy/" target="_blank"
+                                    rel="noopener noreferrer">Google Play Services</a></li>
+                            <li><a href="https://firebase.google.com/support/privacy" target="_blank"
+                                    rel="noopener noreferrer">Google Analytics for Firebase</a></li>
+                            <li><a href="https://firebase.google.com/support/privacy/" target="_blank"
+                                    rel="noopener noreferrer">Firebase Crashlytics</a></li>
+                        </ul>
+                    </li>
+                    <li><strong>Optional device permissions:</strong>
+                        <ul>
+                            <li>Android <code>INTERNET</code> (required) to enable multiplayer gameplay and sync data.
+                            </li>
+                            <li>Android <code>CAMERA</code> (optional) and iOS camera access (optional) to capture a
+                                profile image.</li>
+                            <li>Android <code>READ_EXTERNAL_STORAGE</code>/<code>READ_MEDIA_IMAGES</code> (optional) and
+                                iOS photo library access (optional) to select an existing profile image.</li>
+                        </ul>
+                        You can decline any optional permission, though related features may not work.
+                    </li>
+                </ul>
+                <p>We do not intentionally collect precise GPS location, contacts, SMS, or payment information at this
+                    time.</p>
+                <h3>How We Use Information</h3>
+                <ul>
+                    <li>Provide, personalise, and improve gameplay and user profiles.</li>
+                    <li>Authenticate accounts, sync progress across devices, and prevent fraud or cheating.</li>
+                    <li>Communicate about updates, security alerts, and policy changes.</li>
+                    <li>Monitor performance, diagnose issues, and fix crashes.</li>
+                </ul>
+                <h3>Legal Bases (EEA/UK Users)</h3>
+                <ul>
+                    <li><strong>Contract performance:</strong> providing the Application and related services.</li>
+                    <li><strong>Legitimate interests:</strong> analytics, security, and abuse prevention.</li>
+                    <li><strong>Consent:</strong> optional data such as profile photos or camera access. You can
+                        withdraw
+                        consent via in-app settings or by contacting us.</li>
+                </ul>
+                <h3>Sharing and Processing</h3>
+                <p>We use Google Firebase and related Google Cloud Platform services as processors to host, store, and
+                    manage data on our behalf. We do not sell or rent personal data. We may disclose information if
+                    required by law, to protect our rights or users, or in connection with a merger, acquisition, or
+                    asset sale.</p>
+                <h3>International Transfers</h3>
+                <p>Data may be stored or processed in Google data centres outside your home country, including within
+                    the United States. We rely on Google's safeguards, such as Standard Contractual Clauses, to protect
+                    cross-border transfers.</p>
+                <h3>Data Retention</h3>
+                <p>Account details and gameplay history are kept while your account is active. You can delete your
+                    account
+                    at any time using the in-app deletion option; deletion removes identifiable data and gameplay
+                    records
+                    within 30 days unless a longer period is required to meet legal obligations or investigate abuse.
+                    Aggregated, non-identifiable statistics may be retained.</p>
+                <h3>Your Rights</h3>
+                <p>Depending on your location, you may have the right to access, correct, delete, or export your data,
+                    to
+                    object to or restrict processing, and to withdraw consent where processing is based on consent. Use
+                    the in-app controls or contact <a href="mailto:mccarrenapps@gmail.com">mccarrenapps@gmail.com</a> to
+                    exercise these rights. You may also file a complaint with your local data protection authority.</p>
+                <h3>Children</h3>
+                <p>The Application is intended for players aged 13 and older. We do not knowingly allow children under
+                    13
+                    to create accounts or submit personal data. If you believe a child under 13 has provided personal
+                    data, contact us so we can delete it promptly.</p>
+                <h3>Security</h3>
+                <p>We protect data using Firebase Authentication, App Check, Play Integrity, access controls, and
+                    encrypted transport. No system is perfectly secure, but we will notify users and regulators of data
+                    breaches when required by law.</p>
+                <h3>Changes</h3>
+                <p>We may update this Privacy Policy to reflect changes to the Application or legal requirements. We
+                    will
+                    post the updated policy with a new effective date and, when appropriate, notify you via the
+                    Application, our website, or the app stores.</p>
+                <h3>Contact</h3>
+                <p>Email: <a href="mailto:mccarrenapps@gmail.com">mccarrenapps@gmail.com</a>. Please include "Puzzle
+                    Royale Privacy" in the subject line.</p>
+                <hr class="divider">
+                <p>This policy summarises how we handle data today. Consult a qualified legal professional to confirm it
+                    meets the laws in your region.</p>
+            </section>
+            <section id="terms" class="tab-panel" role="tabpanel" aria-labelledby="tab-terms">
+                <h2>Terms &amp; Conditions</h2>
+                <p class="effective-date">Last updated: 2025-10-04</p>
+                <h3>Acceptance of Terms</h3>
+                <p>By downloading, installing, or using Puzzle Royale (the "Application") you agree to these Terms &amp;
+                    Conditions (the "Terms"). If you do not agree, do not use the Application. You must be at least 13
+                    years old to create an account. Players aged 13 to 17 should review these Terms with a parent or
+                    legal guardian before playing.</p>
+                <h3>License and Ownership</h3>
+                <p>We grant you a personal, revocable, non-transferable, non-exclusive license to use the Application
+                    for
+                    personal entertainment. You may not copy, modify, distribute, reverse engineer, or create derivative
+                    works except where applicable law permits despite this restriction. All intellectual property rights
+                    in the Application remain with the Service Provider.</p>
+                <h3>Accounts and Profile Content</h3>
+                <p>You may authenticate via Google Sign-In. You are responsible for safeguarding your credentials and
+                    for
+                    any activity on your account. Display names and profile images must comply with the Acceptable Use
+                    section. You can delete your account at any time using the in-app deletion control.</p>
+                <h3>Future Purchases</h3>
+                <p>The Application is currently free to use. If we introduce in-app purchases or paid subscriptions
+                    later,
+                    we will present pricing, billing, and refund terms before you complete a purchase. App store billing
+                    policies will apply.</p>
+                <h3>Third-Party Services</h3>
+                <p>The Application relies on Google Play Services, Google Analytics for Firebase, and Firebase
+                    Crashlytics.
+                    Their terms and privacy policies govern use of those services, in addition to any terms required by
+                    your app store or device manufacturer.</p>
+                <ul>
+                    <li><a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer">Google
+                            Play Services Terms</a></li>
+                    <li><a href="https://www.google.com/analytics/terms/" target="_blank"
+                            rel="noopener noreferrer">Google Analytics for Firebase Terms</a></li>
+                    <li><a href="https://firebase.google.com/terms/crashlytics" target="_blank"
+                            rel="noopener noreferrer">Firebase Crashlytics Terms</a></li>
+                </ul>
+                <h3>Acceptable Use</h3>
+                <p>You agree not to:</p>
+                <ul>
+                    <li>Cheat, exploit bugs, use bots, or otherwise manipulate gameplay or matchmaking.</li>
+                    <li>Upload or display content that is unlawful, defamatory, hateful, sexual, or otherwise
+                        inappropriate.</li>
+                    <li>Harass, threaten, or abuse other players.</li>
+                    <li>Interfere with or disrupt servers, networks, or security features.</li>
+                </ul>
+                <p>We may suspend or terminate accounts, remove progress, delete content, or block re-registration if we
+                    suspect violations. Offensive display names or images may be removed at our discretion.</p>
+                <h3>Service Availability</h3>
+                <p>The Application requires an internet connection. We are not liable for outages caused by network
+                    issues,
+                    device problems, or third-party platforms. We may update, suspend, or discontinue the Application or
+                    specific features at any time.</p>
+                <h3>Disclaimers</h3>
+                <p>The Application is provided "as is" and "as available" without warranties of any kind, including
+                    implied warranties of merchantability, fitness for a particular purpose, or non-infringement, to the
+                    extent allowed by law.</p>
+                <h3>Limitation of Liability</h3>
+                <p>To the fullest extent permitted by law, we will not be liable for indirect, incidental, special,
+                    consequential, or punitive damages, or for lost profits, revenues, data, or goodwill. Our total
+                    liability for any claim will not exceed the greater of (a) EUR 10 or (b) the amounts you paid to us
+                    (if
+                    any) in the six months before the event giving rise to the claim. These limits do not apply where
+                    prohibited by law.</p>
+                <h3>Indemnification</h3>
+                <p>You agree to indemnify and hold the Service Provider harmless from claims, damages, and expenses
+                    arising out of your breach of these Terms or misuse of the Application.</p>
+                <h3>Termination</h3>
+                <p>You may stop using the Application at any time. We may suspend or terminate your access if you
+                    violate
+                    these Terms, if we discontinue the Application, or for other legitimate reasons. Upon termination
+                    your
+                    license ends and you must cease using the Application. We may retain data in accordance with the
+                    Privacy Policy.</p>
+                <h3>Governing Law and Dispute Resolution</h3>
+                <p>These Terms are governed by the laws of the Netherlands. Disputes will be submitted to the competent
+                    courts in Amsterdam, the Netherlands. Mandatory consumer protection laws in your country of
+                    residence
+                    may still apply.</p>
+                <h3>Notices</h3>
+                <p>We may provide notices via the Application, our website at <a href="https://www.puzzleroyale.app"
+                        target="_blank" rel="noopener noreferrer">https://www.puzzleroyale.app</a>, app store listings,
+                    or the email linked to your account. You can contact us at <a
+                        href="mailto:mccarrenapps@gmail.com">mccarrenapps@gmail.com</a>.</p>
+                <h3>Force Majeure</h3>
+                <p>We are not responsible for delays or failures caused by events beyond our reasonable control,
+                    including
+                    natural disasters, acts of government, internet outages, or labour disputes.</p>
+                <h3>Changes to These Terms</h3>
+                <p>We may update these Terms occasionally. We will post the revised Terms with a new effective date and,
+                    when required, provide additional notice. Continued use after the changes take effect means you
+                    accept
+                    the updated Terms.</p>
+                <h3>Contact</h3>
+                <p>Email: <a href="mailto:mccarrenapps@gmail.com">mccarrenapps@gmail.com</a>. Please include "Puzzle
+                    Royale Terms" in the subject line.</p>
+                <hr class="divider">
+                <p>This summary is for information only. Consult a qualified lawyer to verify compliance with the laws
+                    that apply to you.</p>
+            </section>
+        </main>
+        <footer>
+            <span>&copy; <span id="year"></span> Puzzle Royale. All rights reserved.</span>
+            <a href="mailto:mccarrenapps@gmail.com">Contact Support</a>
+        </footer>
+    </div>
+    <script>
+        (function () {
+            const body = document.body;
+            const toggle = document.querySelector('.theme-toggle');
+            const tabs = Array.from(document.querySelectorAll('.tablist button'));
+            const panels = Array.from(document.querySelectorAll('.tab-panel'));
+            const prefersLight = window.matchMedia('(prefers-color-scheme: light)');
+
+            const applyTheme = (isLight) => {
+                body.classList.toggle('light', isLight);
+                toggle.setAttribute('aria-pressed', String(isLight));
+            };
+
+            applyTheme(prefersLight.matches);
+            prefersLight.addEventListener('change', (event) => applyTheme(event.matches));
+
+            toggle.addEventListener('click', () => {
+                const isLight = !body.classList.contains('light');
+                applyTheme(isLight);
+            });
+
+            tabs.forEach((tab) => {
+                tab.addEventListener('click', () => {
+                    const targetId = tab.getAttribute('data-target');
+
+                    tabs.forEach((t) => t.setAttribute('aria-selected', String(t === tab)));
+                    panels.forEach((panel) => {
+                        if (panel.id === targetId) {
+                            panel.classList.add('active');
+                            panel.removeAttribute('tabindex');
+                        } else {
+                            panel.classList.remove('active');
+                            panel.setAttribute('tabindex', '-1');
+                        }
+                    });
+                });
+            });
+
+            const yearEl = document.getElementById('year');
+            yearEl.textContent = new Date().getFullYear();
+        })();
+    </script>
 </body>
 
 </html>
