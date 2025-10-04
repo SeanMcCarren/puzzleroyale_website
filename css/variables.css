@@ -1,0 +1,47 @@
+/* CSS Custom Properties / Design Tokens */
+:root {
+    color-scheme: light dark;
+
+    /* Color Gradients */
+    --bg-gradient: radial-gradient(circle at top, #0f172a 0%, #020617 55%, #000 100%);
+    --bg-gradient-light: radial-gradient(circle at top, #eff6ff 0%, #e0f2fe 45%, #f8fafc 100%);
+
+    /* Accent Colors */
+    --accent: #60a5fa;
+    --accent-strong: #2563eb;
+    --accent-gradient: linear-gradient(135deg, #60a5fa, #a78bfa);
+    --accent-gradient-hero: linear-gradient(135deg, #60a5fa 0%, #a78bfa 50%, #ec4899 100%);
+    --accent-gradient-hero-light: linear-gradient(135deg, #2563eb 0%, #7c3aed 50%, #db2777 100%);
+
+    /* Text Colors */
+    --text-primary: #e2e8f0;
+    --text-primary-light: #0f172a;
+    --text-muted: rgba(148, 163, 184, 0.88);
+    --text-muted-light: rgba(71, 85, 105, 0.85);
+
+    /* Spacing */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 2rem;
+    --spacing-lg: 3rem;
+    --spacing-xl: 4rem;
+    --spacing-2xl: 6rem;
+
+    /* Border Radius */
+    --radius-sm: 12px;
+    --radius-md: 16px;
+    --radius-lg: 24px;
+    --radius-xl: 32px;
+    --radius-pill: 999px;
+
+    /* Shadows */
+    --shadow-sm: 0 10px 20px rgba(37, 99, 235, 0.18);
+    --shadow-md: 0 10px 30px rgba(96, 165, 250, 0.3);
+    --shadow-lg: 0 15px 40px rgba(96, 165, 250, 0.4);
+    --shadow-xl: 0 20px 40px rgba(37, 99, 235, 0.2);
+
+    /* Transitions */
+    --transition-fast: 0.2s ease;
+    --transition-base: 0.3s ease;
+    --transition-slow: 0.4s ease;
+}

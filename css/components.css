@@ -1,0 +1,131 @@
+/* Reusable Components */
+
+/* Theme Toggle Button */
+.theme-toggle {
+    position: fixed;
+    top: var(--spacing-md);
+    right: var(--spacing-md);
+    z-index: 100;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    border: 1px solid rgba(148, 163, 184, 0.45);
+    border-radius: var(--radius-pill);
+    padding: 0.5rem 1.2rem;
+    background: rgba(15, 23, 42, 0.4);
+    color: var(--text-primary);
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.24s ease;
+    backdrop-filter: blur(12px);
+}
+
+body.light .theme-toggle {
+    background: rgba(248, 250, 252, 0.8);
+    color: var(--text-primary-light);
+}
+
+.theme-toggle:hover,
+.theme-toggle:focus-visible {
+    outline: none;
+    border-color: rgba(96, 165, 250, 0.65);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+}
+
+.theme-toggle svg {
+    width: 18px;
+    height: 18px;
+}
+
+/* Buttons */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 2.5rem;
+    border-radius: var(--radius-md);
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all var(--transition-base);
+    border: 2px solid transparent;
+}
+
+.btn-primary {
+    background: var(--accent-gradient);
+    color: white;
+    box-shadow: var(--shadow-md);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+}
+
+.btn-secondary {
+    background: rgba(15, 23, 42, 0.5);
+    color: var(--text-primary);
+    border-color: rgba(148, 163, 184, 0.3);
+    backdrop-filter: blur(10px);
+}
+
+body.light .btn-secondary {
+    background: rgba(255, 255, 255, 0.8);
+    color: var(--text-primary-light);
+}
+
+.btn-secondary:hover {
+    border-color: rgba(96, 165, 250, 0.5);
+    transform: translateY(-3px);
+}
+
+/* Feature Cards */
+.feature-card {
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(148, 163, 184, 0.2);
+    border-radius: var(--radius-lg);
+    padding: 2.5rem;
+    backdrop-filter: blur(12px);
+    transition: all var(--transition-base);
+}
+
+body.light .feature-card {
+    background: rgba(255, 255, 255, 0.8);
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(96, 165, 250, 0.5);
+    box-shadow: var(--shadow-xl);
+}
+
+.feature-icon {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 1.5rem;
+    background: var(--accent-gradient);
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+}
+
+.feature-card h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0 0 1rem;
+    color: inherit;
+}
+
+.feature-card p {
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin: 0;
+}
+
+body.light .feature-card p {
+    color: var(--text-muted-light);
+}
