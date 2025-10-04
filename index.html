@@ -34,6 +34,173 @@
             box-sizing: border-box;
         }
 
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-gradient);
+            color: var(--text-primary);
+            padding: clamp(2rem, 5vw, 4rem);
+            transition: background 0.6s ease;
+        }
+
+        body.light {
+            background: var(--bg-gradient-light);
+            color: var(--text-primary-light);
+        }
+
+        .legal-shell {
+            position: relative;
+            width: min(960px, 100%);
+            background: var(--panel-bg);
+            backdrop-filter: blur(14px);
+            border-radius: 28px;
+            border: 1px solid var(--panel-border);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            transition: background 0.6s ease, border 0.6s ease, box-shadow 0.6s ease;
+        }
+
+        body.light .legal-shell {
+            background: var(--panel-bg-light);
+            box-shadow: var(--shadow-light);
+        }
+
+        header {
+            padding: clamp(1.5rem, 2vw, 2.25rem) clamp(2rem, 3vw, 3rem) clamp(1.25rem, 2vw, 2rem);
+            border-bottom: 1px solid var(--panel-border);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: clamp(1.75rem, 3vw, 2.5rem);
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+
+        header p {
+            margin: 0.75rem 0 0;
+            font-size: 1rem;
+            color: var(--text-muted);
+        }
+
+        body.light header p {
+            color: var(--text-muted-light);
+        }
+
+        .tablist {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            padding: clamp(1.25rem, 2vw, 1.75rem) clamp(2rem, 3vw, 3rem) 0;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(15, 23, 42, 0));
+        }
+
+        .tablist button {
+            appearance: none;
+            border: 1px solid transparent;
+            border-radius: 999px;
+            padding: 0.65rem 1.6rem;
+            font-size: 0.95rem;
+            font-weight: 500;
+            letter-spacing: 0.015em;
+            color: inherit;
+            background: var(--tab-bg);
+            cursor: pointer;
+            transition: transform 0.18s ease, border 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .tablist button::before {
+            content: "";
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: rgba(148, 163, 184, 0.45);
+            transition: background 0.2s ease;
+        }
+
+        .tablist button:hover,
+        .tablist button:focus-visible {
+            outline: none;
+            border-color: rgba(96, 165, 250, 0.45);
+            background: var(--tab-hover);
+            transform: translateY(-1px);
+            box-shadow: 0 12px 24px rgba(37, 99, 235, 0.18);
+        }
+
+        .tablist button[aria-selected="true"] {
+            border-color: rgba(96, 165, 250, 0.65);
+            background: rgba(96, 165, 250, 0.18);
+            box-shadow: 0 12px 24px rgba(37, 99, 235, 0.22);
+        }
+
+        .tablist button[aria-selected="true"]::before {
+            background: var(--accent);
+        }
+
+        body.light .tablist button {
+            background: var(--tab-bg-light);
+        }
+
+        main {
+            padding: 0 clamp(2rem, 3vw, 3rem) clamp(2.5rem, 4vw, 3.5rem);
+        }
+
+        .tab-panel {
+            display: none;
+            animation: fade-in 0.38s ease both;
+        }
+
+        .tab-panel.active {
+            display: block;
+        }
+
+        @keyframes fade-in {
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .tab-panel h2,
+        .tab-panel strong {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        body.light .tab-panel h2,
+        body.light .tab-panel strong {
+            color: var(--accent-strong);
+        }
+
+        .tab-panel p,
+        .tab-panel li {
+            line-height: 1.65;
+            font-size: 1rem;
+        }
+
+        .tab-panel ul {
+            padding-left: 1.5rem;
+            margin: 0.75rem 0 1.75rem;
+        }
+
+        .tab-panel a {
+            color: var(--accent);
+            text-decoration: none;
+            position: relative;
+        }
+
         .tab-panel a::after {
             content: "";
             position: absolute;
