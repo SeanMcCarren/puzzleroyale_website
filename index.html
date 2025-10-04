@@ -1,24 +1,20 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Puzzle Royale • Legal</title>
+    <title>Puzzle Royale Compete. Solve. Conquer.</title>
+    <meta name="description"
+        content="Puzzle Royale - The ultimate competitive puzzle gaming experience. Challenge players worldwide and climb the ranks!">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
             color-scheme: light dark;
             --bg-gradient: radial-gradient(circle at top, #0f172a 0%, #020617 55%, #000 100%);
             --bg-gradient-light: radial-gradient(circle at top, #eff6ff 0%, #e0f2fe 45%, #f8fafc 100%);
-            --panel-bg: rgba(15, 23, 42, 0.85);
-            --panel-bg-light: rgba(255, 255, 255, 0.92);
-            --panel-border: rgba(148, 163, 184, 0.35);
-            --tab-bg: rgba(15, 23, 42, 0.65);
-            --tab-bg-light: rgba(255, 255, 255, 0.65);
-            --tab-hover: rgba(59, 130, 246, 0.25);
             --accent: #60a5fa;
             --accent-strong: #2563eb;
             --text-primary: #e2e8f0;
@@ -36,23 +32,18 @@
             margin: 0;
             min-height: 100vh;
             position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: clamp(2.5rem, 5vw, 4rem);
-            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
             background: var(--bg-gradient);
             color: var(--text-primary);
             transition: background 0.4s ease, color 0.4s ease;
+            overflow-x: hidden;
         }
 
         body::before {
             content: "";
             position: fixed;
             inset: 0;
-            background: radial-gradient(circle at 20% 20%, rgba(59, 130, 246, 0.18), transparent 55%),
-                radial-gradient(circle at 80% 10%, rgba(56, 189, 248, 0.14), transparent 50%),
-                radial-gradient(circle at 50% 85%, rgba(37, 99, 235, 0.15), transparent 45%);
+            background: radial-gradient(circle at 20% 20%, rgba(59, 130, 246, 0.18), transparent 55%), radial-gradient(circle at 80% 10%, rgba(56, 189, 248, 0.14), transparent 50%), radial-gradient(circle at 50% 85%, rgba(37, 99, 235, 0.15), transparent 45%);
             pointer-events: none;
             z-index: 0;
         }
@@ -63,113 +54,241 @@
         }
 
         body.light::before {
-            background: radial-gradient(circle at 20% 20%, rgba(37, 99, 235, 0.13), transparent 55%),
-                radial-gradient(circle at 80% 10%, rgba(14, 165, 233, 0.14), transparent 50%),
-                radial-gradient(circle at 50% 85%, rgba(56, 189, 248, 0.12), transparent 45%);
+            background: radial-gradient(circle at 20% 20%, rgba(37, 99, 235, 0.13), transparent 55%), radial-gradient(circle at 80% 10%, rgba(14, 165, 233, 0.14), transparent 50%), radial-gradient(circle at 50% 85%, rgba(56, 189, 248, 0.12), transparent 45%);
         }
 
-        .legal-shell {
-            position: relative;
-            z-index: 1;
-            width: min(960px, 100%);
-            background: var(--panel-bg);
-            border-radius: 32px;
-            border: 1px solid var(--panel-border);
-            backdrop-filter: blur(22px);
-            box-shadow: 0 40px 80px rgba(15, 23, 42, 0.55);
-            overflow: hidden;
-            color: inherit;
-        }
-
-        body.light .legal-shell {
-            background: var(--panel-bg-light);
-            box-shadow: 0 30px 60px rgba(15, 23, 42, 0.25);
-        }
-
-        header {
-            padding: clamp(2rem, 4vw, 3rem) clamp(2rem, 4vw, 3rem) clamp(1.5rem, 3vw, 2.25rem);
-        }
-
-        header h1 {
-            margin: 0 0 0.6rem;
-            font-size: clamp(1.85rem, 4vw, 2.35rem);
-            letter-spacing: 0.02em;
-        }
-
-        header p {
-            margin: 0;
-            color: var(--text-muted);
-            max-width: 44ch;
-        }
-
-        body.light header p {
-            color: rgba(71, 85, 105, 0.85);
-        }
-
-        .tablist {
-            display: flex;
-            gap: 1rem;
-            padding: 0 clamp(2rem, 4vw, 3rem);
-            border-bottom: 1px solid rgba(148, 163, 184, 0.25);
-            margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
-        }
-
-        .tablist button {
-            border: 1px solid var(--panel-border);
-            border-radius: 12px;
-            padding: 0.6rem 1.25rem;
-            font-size: 0.95rem;
-            font-weight: 500;
-            letter-spacing: 0.015em;
-            color: inherit;
-            background: var(--tab-bg);
-            cursor: pointer;
-            transition: transform 0.18s ease, border 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+        .theme-toggle {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            z-index: 100;
             display: inline-flex;
             align-items: center;
             gap: 0.6rem;
+            border: 1px solid rgba(148, 163, 184, 0.45);
+            border-radius: 999px;
+            padding: 0.5rem 1.2rem;
+            background: rgba(15, 23, 42, 0.4);
+            color: var(--text-primary);
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.24s ease;
+            backdrop-filter: blur(12px);
         }
 
-        .tablist button::before {
-            content: "";
-            width: 7px;
-            height: 7px;
-            border-radius: 50%;
-            background: rgba(148, 163, 184, 0.45);
-            transition: background 0.2s ease;
+        body.light .theme-toggle {
+            background: rgba(248, 250, 252, 0.8);
+            color: var(--text-primary-light);
         }
 
-        .tablist button[aria-selected="true"] {
+        .theme-toggle:hover,
+        .theme-toggle:focus-visible {
+            outline: none;
             border-color: rgba(96, 165, 250, 0.65);
-            background: rgba(96, 165, 250, 0.18);
-            box-shadow: 0 12px 24px rgba(37, 99, 235, 0.22);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(37, 99, 235, 0.2);
         }
 
-        .tablist button[aria-selected="true"]::before {
-            background: var(--accent);
+        .theme-toggle svg {
+            width: 18px;
+            height: 18px;
         }
 
-        body.light .tablist button {
-            background: var(--tab-bg-light);
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 8rem 2rem 4rem;
         }
 
-        main {
-            padding: 0 clamp(2rem, 4vw, 3rem) clamp(2.5rem, 4vw, 3.5rem);
+        .hero h1 {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 800;
+            margin: 0 0 1rem;
+            background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 50%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.02em;
+            animation: fade-in-up 0.8s ease both;
         }
 
-        .tab-panel {
-            display: none;
-            animation: fade-in 0.38s ease both;
+        body.light .hero h1 {
+            background: linear-gradient(135deg, #2563eb 0%, #7c3aed 50%, #db2777 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
-        .tab-panel.active {
-            display: block;
+        .hero .tagline {
+            font-size: clamp(1.25rem, 3vw, 1.75rem);
+            color: var(--text-muted);
+            margin: 0 0 3rem;
+            max-width: 600px;
+            animation: fade-in-up 0.8s 0.1s ease both;
         }
 
-        @keyframes fade-in {
+        body.light .hero .tagline {
+            color: rgba(71, 85, 105, 0.85);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            animation: fade-in-up 0.8s 0.2s ease both;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 2.5rem;
+            border-radius: 16px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #60a5fa, #a78bfa);
+            color: white;
+            box-shadow: 0 10px 30px rgba(96, 165, 250, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(96, 165, 250, 0.4);
+        }
+
+        .btn-secondary {
+            background: rgba(15, 23, 42, 0.5);
+            color: var(--text-primary);
+            border-color: rgba(148, 163, 184, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        body.light .btn-secondary {
+            background: rgba(255, 255, 255, 0.8);
+            color: var(--text-primary-light);
+        }
+
+        .btn-secondary:hover {
+            border-color: rgba(96, 165, 250, 0.5);
+            transform: translateY(-3px);
+        }
+
+        .features {
+            position: relative;
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .features h2 {
+            text-align: center;
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 700;
+            margin: 0 0 4rem;
+            color: var(--accent);
+        }
+
+        body.light .features h2 {
+            color: var(--accent-strong);
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            border-radius: 24px;
+            padding: 2.5rem;
+            backdrop-filter: blur(12px);
+            transition: all 0.3s ease;
+        }
+
+        body.light .feature-card {
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(96, 165, 250, 0.5);
+            box-shadow: 0 20px 40px rgba(37, 99, 235, 0.2);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #60a5fa, #a78bfa);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 0 0 1rem;
+            color: inherit;
+        }
+
+        .feature-card p {
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        body.light .feature-card p {
+            color: rgba(71, 85, 105, 0.85);
+        }
+
+        footer {
+            position: relative;
+            padding: 3rem 2rem 2rem;
+            text-align: center;
+            color: var(--text-muted);
+            border-top: 1px solid rgba(148, 163, 184, 0.15);
+        }
+
+        footer a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: opacity 0.2s ease;
+        }
+
+        footer a:hover {
+            opacity: 0.8;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+        }
+
+        @keyframes fade-in-up {
             from {
                 opacity: 0;
-                transform: translateY(8px);
+                transform: translateY(30px);
             }
 
             to {
@@ -178,491 +297,138 @@
             }
         }
 
-        .tab-panel h2,
-        .tab-panel strong {
-            color: var(--accent);
-            font-weight: 600;
-        }
-
-        body.light .tab-panel h2,
-        body.light .tab-panel strong {
-            color: var(--accent-strong);
-        }
-
-        .tab-panel p,
-        .tab-panel li {
-            line-height: 1.65;
-            font-size: 1rem;
-        }
-
-        .tab-panel ul {
-            padding-left: 1.5rem;
-            margin: 0.75rem 0 1.75rem;
-        }
-
-        .tab-panel a {
-            color: var(--accent);
-            text-decoration: none;
-            position: relative;
-        }
-
-        .tab-panel a::after {
-            content: "";
-            position: absolute;
-            left: 0;
-            bottom: -2px;
-            width: 100%;
-            height: 1px;
-            background: currentColor;
-            opacity: 0.4;
-            transition: opacity 0.2s ease;
-        }
-
-        .tab-panel a:hover::after,
-        .tab-panel a:focus-visible::after {
-            opacity: 1;
-        }
-
-        .divider {
-            margin: 2.5rem 0;
-            border: 0;
-            border-top: 1px solid var(--panel-border);
-        }
-
-        .effective-date {
-            font-weight: 500;
-            color: var(--accent);
-        }
-
-        body.light .effective-date {
-            color: var(--accent-strong);
-        }
-
-        .theme-toggle {
-            position: absolute;
-            top: clamp(1.5rem, 4vw, 2.75rem);
-            right: clamp(1.5rem, 4vw, 2.75rem);
-            display: inline-flex;
-            align-items: center;
-            gap: 0.6rem;
-            border: 1px solid rgba(148, 163, 184, 0.45);
-            border-radius: 999px;
-            padding: 0.4rem 1rem;
-            background: rgba(15, 23, 42, 0.35);
-            color: var(--text-primary);
-            font-size: 0.85rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.24s ease;
-            backdrop-filter: blur(8px);
-        }
-
-        body.light .theme-toggle {
-            background: rgba(248, 250, 252, 0.75);
-            color: var(--text-primary-light);
-        }
-
-        .theme-toggle:hover,
-        .theme-toggle:focus-visible {
-            outline: none;
-            border-color: rgba(96, 165, 250, 0.65);
-            transform: translateY(-1px);
-            box-shadow: 0 10px 20px rgba(37, 99, 235, 0.18);
-        }
-
-        .theme-toggle svg {
-            width: 18px;
-            height: 18px;
-        }
-
-        footer {
-            padding: clamp(1.5rem, 2vw, 2rem) clamp(2rem, 3vw, 3rem) clamp(2rem, 4vw, 3rem);
-            background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(15, 23, 42, 0));
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 0.75rem;
-        }
-
-        footer a {
-            color: inherit;
-        }
-
-        @media (max-width: 720px) {
-            body {
-                padding: clamp(1.5rem, 6vw, 2.5rem);
-            }
-
-            .legal-shell {
-                border-radius: 24px;
-            }
-
-            header,
-            main,
-            footer {
-                padding-left: clamp(1.35rem, 6vw, 1.75rem);
-                padding-right: clamp(1.35rem, 6vw, 1.75rem);
-            }
-
-            .tablist {
-                padding-left: clamp(1.35rem, 6vw, 1.75rem);
-                padding-right: clamp(1.35rem, 6vw, 1.75rem);
-            }
-
-            .tab-panel ul {
-                padding-left: 1.2rem;
-            }
-
+        @media (max-width: 768px) {
             .theme-toggle {
-                position: static;
-                align-self: flex-end;
+                top: 1rem;
+                right: 1rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 
 <body>
-    <div class="legal-shell">
-        <button class="theme-toggle" type="button" aria-pressed="false" title="Toggle light or dark theme">
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path d="M12 18.25A6.25 6.25 0 1 0 12 5.75A6.25 6.25 0 1 0 12 18.25Z" stroke="currentColor"
-                    stroke-width="1.5"></path>
-                <path d="M12 2V3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
-                <path d="M12 20.5V22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
-                <path d="M4.21997 4.21997L5.27997 5.27997" stroke="currentColor" stroke-width="1.5"
-                    stroke-linecap="round"></path>
-                <path d="M18.72 18.72L19.78 19.78" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
-                </path>
-                <path d="M2 12H3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
-                <path d="M20.5 12H22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
-                <path d="M4.21997 19.78L5.27997 18.72" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
-                </path>
-                <path d="M18.72 5.27997L19.78 4.21997" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
-                </path>
-            </svg>
-            Theme
-        </button>
-        <header>
-            <h1>Puzzle Royale Legal</h1>
-            <p>Review the latest policies that keep your experience transparent and compliant.</p>
-        </header>
-        <nav class="tablist" role="tablist" aria-label="Legal content tabs">
-            <button type="button" role="tab" aria-selected="true" aria-controls="privacy" id="tab-privacy"
-                data-target="privacy">Privacy Policy</button>
-            <button type="button" role="tab" aria-selected="false" aria-controls="terms" id="tab-terms"
-                data-target="terms">Terms &amp; Conditions</button>
-        </nav>
-        <main>
-            <section id="privacy" class="tab-panel active" role="tabpanel" aria-labelledby="tab-privacy">
-                <h2>Privacy Policy</h2>
-                <p class="effective-date">Last updated: 2025-10-04</p>
-                <h3>1. Scope and Data Controller</h3>
-                <p>This Privacy Policy governs the processing of information in connection with the Puzzle Royale mobile
-                    application (the "App") and the website <a href="https://www.puzzleroyale.app" target="_blank"
-                        rel="noopener noreferrer">https://www.puzzleroyale.app</a> (collectively, the "Services"). The
-                    Services are operated by Sean McCarren, Roggekamp 12, 2497 NA Den Haag, The Netherlands ("Puzzle
-                    Royale", "we", "us"). For purposes of the EU General Data Protection Regulation ("GDPR"), we are the
-                    data controller for the processing activities described herein.</p>
-                <h3>2. Categories of Personal Data</h3>
-                <p>We process the following categories of personal data:</p>
-                <ul>
-                    <li><strong>Registration and account data:</strong> Google account identifier, email address,
-                        display
-                        name, and Google-provided profile image when you sign in with Google. You may voluntarily supply
-                        a
-                        display name and profile image inside the App.</li>
-                    <li><strong>Gameplay and usage data:</strong> match results, rankings, achievements, gameplay
-                        history,
-                        and other telemetry generated through your use of the Services.</li>
-                    <li><strong>Diagnostic data:</strong> device identifiers, crash reports, performance metrics, and
-                        analytics events collected automatically by Google Play Services, Google Analytics for Firebase,
-                        and Firebase Crashlytics. Each service processes personal data pursuant to its own privacy
-                        notice:
-                        <ul>
-                            <li><a href="https://www.google.com/policies/privacy/" target="_blank"
-                                    rel="noopener noreferrer">Google Privacy Policy</a></li>
-                            <li><a href="https://firebase.google.com/support/privacy" target="_blank"
-                                    rel="noopener noreferrer">Firebase Privacy Notice</a></li>
-                        </ul>
-                    </li>
-                    <li><strong>Device permissions:</strong> (i) Android <code>INTERNET</code> (mandatory) for
-                        multiplayer and synchronisation; (ii) Android <code>CAMERA</code> and iOS camera access
-                        (optional)
-                        for capturing a profile picture; (iii) Android
-                        <code>READ_EXTERNAL_STORAGE</code>/<code>READ_MEDIA_IMAGES</code>
-                        and iOS photo-library access (optional) for selecting an existing picture. Declining an optional
-                        permission may disable the related feature.
-                    </li>
-                </ul>
-                <p>We do not intentionally collect precise geolocation, payment card information, address book contents,
-                    or SMS content through the Services.</p>
-                <h3>3. Purposes and Legal Bases for Processing</h3>
-                <p>Your personal data is processed for the following purposes and legal bases:</p>
-                <ul>
-                    <li><strong>Contract performance (Article 6(1)(b) GDPR):</strong> to create and maintain your
-                        account,
-                        deliver multiplayer functionality, synchronise progress, and provide core gameplay features.
-                    </li>
-                    <li><strong>Legitimate interests (Article 6(1)(f) GDPR):</strong> to protect the Services against
-                        fraud
-                        and abuse (including cheat detection and enforcement), to analyse usage for service improvement,
-                        and to maintain the stability and security of our infrastructure. Our interests are balanced
-                        against your rights and freedoms.</li>
-                    <li><strong>Consent (Article 6(1)(a) GDPR):</strong> for optional features such as uploading a
-                        profile
-                        image or granting camera/photo-library permissions. You may withdraw consent at any time inside
-                        the App or by contacting us.</li>
-                </ul>
-                <h3>4. Recipients and Processors</h3>
-                <p>We engage Google LLC and its affiliates (Firebase, Google Play Services, Google Analytics for
-                    Firebase,
-                    Firebase Crashlytics) as data processors pursuant to written data-processing agreements. Personal
-                    data
-                    may also be disclosed to competent authorities or legal counsel where disclosure is required to
-                    comply
-                    with legal obligations or to protect our legitimate interests (for example, in connection with
-                    enforcement of the Terms &amp; Conditions).</p>
-                <h3>5. International Data Transfers</h3>
-                <p>Personal data may be stored on or accessed from servers located outside the European Economic Area,
-                    including the United States. Such transfers rely on appropriate safeguards, including Standard
-                    Contractual Clauses approved by the European Commission and, where applicable, supplementary
-                    protective measures implemented by Google LLC.</p>
-                <h3>6. Retention Periods</h3>
-                <p>We retain account data and gameplay history for as long as your account remains active. When you use
-                    the in-app deletion function, we will delete or anonymise personal data within thirty (30) days,
-                    unless
-                    longer retention is required for legal, regulatory, or dispute-resolution purposes. Aggregated or
-                    anonymised analytics data may be retained indefinitely.</p>
-                <h3>7. Data Subject Rights</h3>
-                <p>Subject to applicable law, you may request access to, rectification or erasure of, or restriction of
-                    processing concerning your personal data. You may also object to processing based on legitimate
-                    interests, request data portability, or lodge a complaint with your local supervisory authority.
-                    Please
-                    submit requests via the in-app tools or by emailing <a
-                        href="mailto:mccarrenapps@gmail.com">mccarrenapps@gmail.com</a>.</p>
-                <h3>8. Children</h3>
-                <p>The Services are intended for individuals aged thirteen (13) years and older. We do not knowingly
-                    collect
-                    personal data from children under 13. If you are a parent or guardian and believe your child has
-                    provided personal data without consent, contact us so that we can delete the information promptly.
-                </p>
-                <h3>9. Security Measures</h3>
-                <p>We maintain administrative, technical, and physical safeguards appropriate to the nature of the data,
-                    including Firebase Authentication, App Check, Play Integrity API, encrypted transport, and access
-                    controls. While we strive to protect personal data, no security measure is infallible. We will
-                    notify
-                    affected users and competent authorities of personal-data breaches when legally required.</p>
-                <h3>10. Updates to this Policy</h3>
-                <p>We may revise this Privacy Policy from time to time to reflect changes in law, our processing
-                    activities, or the Services. Material changes will be communicated through the App, our website, or
-                    app
-                    store listings. Continued use of the Services after the effective date constitutes acknowledgement
-                    of
-                    the revised policy.</p>
-                <h3>11. Contact</h3>
-                <p>If you have questions about this Privacy Policy or our data practices, contact us at <a
-                        href="mailto:mccarrenapps@gmail.com">mccarrenapps@gmail.com</a>. You may also write to the
-                    postal
-                    address listed above. We endeavour to respond within thirty (30) days.</p>
-            </section>
-            <section id="terms" class="tab-panel" role="tabpanel" aria-labelledby="tab-terms">
-                <h2>Terms &amp; Conditions</h2>
-                <p class="effective-date">Last updated: 2025-10-04</p>
-                <h3>1. Acceptance and Eligibility</h3>
-                <p>These Terms &amp; Conditions (the "Terms") form a binding agreement between you and Sean McCarren,
-                    trading as Puzzle Royale ("Puzzle Royale", "we", "us", or "our"), governing your access to and
-                    use of the Puzzle Royale mobile application and related services (collectively, the "App"). By
-                    downloading, installing, accessing, or using the App you agree to be bound by these Terms. If you do
-                    not
-                    agree, you must not use the App. You represent that you are at least thirteen (13) years old;
-                    individuals
-                    aged 13 to 17 may only use the App with the consent of a parent or legal guardian who accepts
-                    responsibility for the minor’s use.</p>
-                <h3>2. Definitions</h3>
-                <ul>
-                    <li><strong>"Puzzle Royale", "we", "us", or "our"</strong> means Sean McCarren trading as Puzzle
-                        Royale.</li>
-                    <li><strong>"User", "you", or "your"</strong> means the natural person accessing or using the App.
-                    </li>
-                    <li><strong>"Content"</strong> means any text, graphics, gameplay data, images, or other material
-                        submitted, generated, or displayed through the App.</li>
-                    <li><strong>"Services"</strong> means the App, associated websites, and any related features
-                        provided by
-                        Puzzle Royale.</li>
-                </ul>
-                <h3>3. Licence Grant</h3>
-                <p>Subject to your compliance with these Terms, we grant you a personal, revocable, non-exclusive,
-                    non-transferable, and non-sublicensable licence to install and use the App solely for your personal
-                    entertainment. All rights not expressly granted are reserved. You must not copy, modify, distribute,
-                    publicly perform, reverse engineer, decompile, or create derivative works from the App except to the
-                    extent such restrictions are prohibited by applicable law.</p>
-                <h3>4. Accounts and Credentials</h3>
-                <p>The App uses Google Sign-In for authentication. You are responsible for safeguarding your account
-                    credentials and for all activities that occur under your account. You must promptly notify us of any
-                    unauthorised use. You may delete your account through the in-app deletion feature at any time.</p>
-                <h3>5. User Content</h3>
-                <p>You may submit display names, profile images, or other Content. You grant Puzzle Royale a worldwide,
-                    royalty-free, non-exclusive licence to host, reproduce, display, and otherwise use such Content
-                    solely for
-                    operating and improving the App. You represent and warrant that you have all rights necessary to
-                    submit the
-                    Content and that it does not infringe or violate any third-party rights.</p>
-                <h3>6. Future Paid Features</h3>
-                <p>The App is presently provided without charge. We may introduce in-app purchases or subscription-based
-                    services in the future. If we do so, we will present applicable pricing, billing terms, and refund
-                    policies
-                    before you complete any purchase. Purchases will be processed through your app store provider, and
-                    that
-                    provider’s terms will govern payment processing and refunds.</p>
-                <h3>7. Third-Party Services</h3>
-                <p>The App integrates with third-party services, including Google Play Services, Google Analytics for
-                    Firebase,
-                    and Firebase Crashlytics. Your use of those services is subject to their respective terms in
-                    addition to
-                    these Terms:</p>
-                <ul>
-                    <li><a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer">Google
-                            Play Services Terms</a></li>
-                    <li><a href="https://www.google.com/analytics/terms/" target="_blank"
-                            rel="noopener noreferrer">Google Analytics for Firebase Terms</a></li>
-                    <li><a href="https://firebase.google.com/terms/crashlytics" target="_blank"
-                            rel="noopener noreferrer">Firebase Crashlytics Terms</a></li>
-                </ul>
-                <h3>8. Acceptable Use</h3>
-                <p>You agree not to:</p>
-                <ul>
-                    <li>engage in cheating, automation, scripting, or exploitation of bugs or vulnerabilities;</li>
-                    <li>submit or display Content that is unlawful, defamatory, obscene, hateful, or otherwise
-                        objectionable;</li>
-                    <li>harass, threaten, or impersonate other users;</li>
-                    <li>interfere with or disrupt servers, networks, security features, or access controls.</li>
-                </ul>
-                <p>We reserve the right to investigate suspected violations. We may suspend, restrict, or terminate
-                    accounts,
-                    revoke in-app items, or delete Content where we reasonably believe these Terms have been breached.
-                </p>
-                <h3>9. Availability and Updates</h3>
-                <p>The App requires an active internet connection. Availability may be affected by network outages,
-                    device
-                    constraints, or third-party service interruptions. We may modify, suspend, or discontinue any
-                    feature or the
-                    entire App at any time without liability, subject to applicable consumer-protection laws.</p>
-                <h3>10. Disclaimers</h3>
-                <p>The App is provided on an "as is" and "as available" basis, without warranties of any kind, whether
-                    express, implied, statutory, or otherwise, including implied warranties of merchantability, fitness
-                    for a
-                    particular purpose, title, and non-infringement. We do not warrant that the App will be
-                    uninterrupted or
-                    error-free.</p>
-                <h3>11. Limitation of Liability</h3>
-                <p>To the maximum extent permitted by law, Puzzle Royale shall not be liable for any indirect,
-                    incidental,
-                    consequential, special, or punitive damages, or for loss of profits, revenues, data, goodwill, or
-                    other
-                    intangible losses arising out of or in connection with your use of the App. Our aggregate liability
-                    for all
-                    claims arising out of or relating to the App shall not exceed the greater of (a) EUR 10 or (b) the
-                    total
-                    amounts you paid to us, if any, in the six (6) months preceding the event giving rise to the
-                    liability. These
-                    limitations do not exclude liability for intentional misconduct, gross negligence, or any matter for
-                    which
-                    liability cannot be excluded under applicable law.</p>
-                <h3>12. Indemnification</h3>
-                <p>You agree to indemnify, defend, and hold harmless Puzzle Royale from and against any claims, damages,
-                    losses,
-                    liabilities, and expenses (including reasonable legal fees) arising out of or in connection with
-                    your breach
-                    of these Terms or your misuse of the App.</p>
-                <h3>13. Termination</h3>
-                <p>You may cease using the App at any time. We may suspend or terminate your access if you materially
-                    breach
-                    these Terms, if we discontinue the App, or if required by law. Upon termination, the licence granted
-                    to you
-                    under Section 3 terminates immediately, and you must uninstall the App. Sections that by their
-                    nature should
-                    survive termination shall remain in force.</p>
-                <h3>14. Governing Law and Jurisdiction</h3>
-                <p>These Terms are governed by and construed in accordance with the laws of the Netherlands. Any dispute
-                    arising
-                    out of or relating to the App or these Terms shall be submitted to the exclusive jurisdiction of the
-                    competent courts in Amsterdam, The Netherlands. Mandatory consumer-protection laws in your country
-                    of
-                    residence may grant you additional rights.</p>
-                <h3>15. Notices</h3>
-                <p>We may provide notices to you by email, in-app messages, postings within the App, or updates to our
-                    website.
-                    Notices to Puzzle Royale must be sent to <a
-                        href="mailto:mccarrenapps@gmail.com">mccarrenapps@gmail.com</a>.
-                </p>
-                <h3>16. Force Majeure</h3>
-                <p>We are not responsible for any failure to perform due to causes beyond our reasonable control,
-                    including
-                    natural disasters, acts of government, labour disputes, internet or telecommunication failures, or
-                    acts of
-                    third parties.</p>
-                <h3>17. Changes to the Terms</h3>
-                <p>We may amend these Terms from time to time. When we do, we will update the "Last updated" date above
-                    and
-                    provide notice in accordance with applicable law. Your continued use of the App after the effective
-                    date of
-                    the revised Terms constitutes acceptance of the changes.</p>
-                <h3>18. Contact</h3>
-                <p>Questions or concerns regarding these Terms may be directed to <a
-                        href="mailto:mccarrenapps@gmail.com">mccarrenapps@gmail.com</a>.</p>
-                <hr class="divider">
-                <p>These Terms are intended to comply with applicable law and do not limit any non-waivable statutory
-                    rights you
-                    may have.</p>
-            </section>
-        </main>
-        <footer>
-            <span>&copy; <span id="year"></span> Puzzle Royale. All rights reserved.</span>
+    <button class="theme-toggle" type="button" aria-pressed="false" title="Toggle light or dark theme">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M12 18.25A6.25 6.25 0 1 0 12 5.75A6.25 6.25 0 1 0 12 18.25Z" stroke="currentColor"
+                stroke-width="1.5"></path>
+            <path d="M12 2V3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+            <path d="M12 20.5V22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+            <path d="M4.21997 4.21997L5.27997 5.27997" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+            </path>
+            <path d="M18.72 18.72L19.78 19.78" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+            <path d="M2 12H3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+            <path d="M20.5 12H22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+            <path d="M4.21997 19.78L5.27997 18.72" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+            </path>
+            <path d="M18.72 5.27997L19.78 4.21997" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+            </path>
+        </svg>
+        Theme
+    </button>
+    <section class="hero">
+        <h1>Puzzle Royale</h1>
+        <p class="tagline">Compete. Solve. Conquer. The ultimate competitive puzzle gaming experience.</p>
+        <div class="cta-buttons">
+            <a href="#" class="btn btn-primary">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M17 8L21 12L17 16M3 12H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </svg>
+                Download Now
+            </a>
+            <a href="#features" class="btn btn-secondary">Learn More</a>
+        </div>
+    </section>
+    <section id="features" class="features">
+        <h2>Why Puzzle Royale?</h2>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="feature-icon"></div>
+                <h3>Competitive Play</h3>
+                <p>Challenge players from around the world in real-time puzzle battles. Climb the leaderboards and prove
+                    your skills.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"></div>
+                <h3>Diverse Puzzles</h3>
+                <p>Enjoy a wide variety of puzzle types that test your logic, speed, and strategy. New challenges added
+                    regularly.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"></div>
+                <h3>Achievements &amp; Ranks</h3>
+                <p>Unlock achievements, earn rewards, and rise through the ranks to become the ultimate Puzzle Royale
+                    champion.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"></div>
+                <h3>Fast-Paced Action</h3>
+                <p>Quick matches perfect for on-the-go gaming. Each game is designed to be exciting and accessible.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"></div>
+                <h3>Social Features</h3>
+                <p>Connect with friends, share your progress, and compete in friendly rivalries. Build your puzzle
+                    community.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"></div>
+                <h3>Secure &amp; Fair</h3>
+                <p>Play with confidence knowing we prioritize security, privacy, and fair play for all users.</p>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <div class="footer-links">
+            <a href="privacy/">Privacy Policy</a>
+            <a href="privacy/#terms">Terms &amp; Conditions</a>
             <a href="mailto:mccarrenapps@gmail.com">Contact Support</a>
-        </footer>
-    </div>
+        </div>
+        <p>&copy; <span id="year"></span> Puzzle Royale. All rights reserved.</p>
+    </footer>
     <script>
         (function () {
             const body = document.body;
-            const toggle = document.querySelector('.theme-toggle');
-            const tabs = Array.from(document.querySelectorAll('.tablist button'));
-            const panels = Array.from(document.querySelectorAll('.tab-panel'));
-            const prefersLight = window.matchMedia('(prefers-color-scheme: light)');
-
+            const toggle = document.querySelector(".theme-toggle");
+            const prefersLight = window.matchMedia("(prefers-color-scheme: light)");
             const applyTheme = (isLight) => {
-                body.classList.toggle('light', isLight);
-                toggle.setAttribute('aria-pressed', String(isLight));
+                body.classList.toggle("light", isLight);
+                toggle.setAttribute("aria-pressed", String(isLight));
             };
-
             applyTheme(prefersLight.matches);
-            prefersLight.addEventListener('change', (event) => applyTheme(event.matches));
-
-            toggle.addEventListener('click', () => {
-                const isLight = !body.classList.contains('light');
+            prefersLight.addEventListener("change", (event) => applyTheme(event.matches));
+            toggle.addEventListener("click", () => {
+                const isLight = !body.classList.contains("light");
                 applyTheme(isLight);
             });
-
-            tabs.forEach((tab) => {
-                tab.addEventListener('click', () => {
-                    const targetId = tab.getAttribute('data-target');
-
-                    tabs.forEach((t) => t.setAttribute('aria-selected', String(t === tab)));
-                    panels.forEach((panel) => {
-                        if (panel.id === targetId) {
-                            panel.classList.add('active');
-                            panel.removeAttribute('tabindex');
-                        } else {
-                            panel.classList.remove('active');
-                            panel.setAttribute('tabindex', '-1');
+            document.querySelectorAll("a[href^='#']").forEach(anchor => {
+                anchor.addEventListener("click", function (e) {
+                    const href = this.getAttribute("href");
+                    if (href !== "#") {
+                        e.preventDefault();
+                        const target = document.querySelector(href);
+                        if (target) {
+                            target.scrollIntoView({ behavior: "smooth", block: "start" });
                         }
-                    });
+                    }
                 });
             });
-
-            const yearEl = document.getElementById('year');
+            const yearEl = document.getElementById("year");
             yearEl.textContent = new Date().getFullYear();
         })();
     </script>
