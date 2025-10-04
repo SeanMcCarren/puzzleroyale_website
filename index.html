@@ -19,32 +19,42 @@
             --tab-bg: rgba(15, 23, 42, 0.65);
             --tab-bg-light: rgba(255, 255, 255, 0.65);
             --tab-hover: rgba(59, 130, 246, 0.25);
+            --accent: #60a5fa;
+            --accent-strong: #2563eb;
             --text-primary: #e2e8f0;
             --text-primary-light: #0f172a;
-            --text-muted: #94a3b8;
-            --text-muted-light: #475569;
-            --accent: #60a5fa;
-            --accent-strong: #3b82f6;
-            --shadow: 0 24px 50px rgba(15, 23, 42, 0.35);
-            --shadow-light: 0 24px 50px rgba(15, 23, 42, 0.18);
-            font-size: 16px;
+            --text-muted: rgba(148, 163, 184, 0.88);
         }
 
-        * {
+        *,
+        *::before,
+        *::after {
             box-sizing: border-box;
         }
 
         body {
             margin: 0;
             min-height: 100vh;
-            font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+            position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
+            padding: clamp(2.5rem, 5vw, 4rem);
+            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             background: var(--bg-gradient);
             color: var(--text-primary);
-            padding: clamp(2rem, 5vw, 4rem);
-            transition: background 0.6s ease;
+            transition: background 0.4s ease, color 0.4s ease;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at 20% 20%, rgba(59, 130, 246, 0.18), transparent 55%),
+                radial-gradient(circle at 80% 10%, rgba(56, 189, 248, 0.14), transparent 50%),
+                radial-gradient(circle at 50% 85%, rgba(37, 99, 235, 0.15), transparent 45%);
+            pointer-events: none;
+            z-index: 0;
         }
 
         body.light {
@@ -52,58 +62,62 @@
             color: var(--text-primary-light);
         }
 
+        body.light::before {
+            background: radial-gradient(circle at 20% 20%, rgba(37, 99, 235, 0.13), transparent 55%),
+                radial-gradient(circle at 80% 10%, rgba(14, 165, 233, 0.14), transparent 50%),
+                radial-gradient(circle at 50% 85%, rgba(56, 189, 248, 0.12), transparent 45%);
+        }
+
         .legal-shell {
             position: relative;
+            z-index: 1;
             width: min(960px, 100%);
             background: var(--panel-bg);
-            backdrop-filter: blur(14px);
-            border-radius: 28px;
+            border-radius: 32px;
             border: 1px solid var(--panel-border);
-            box-shadow: var(--shadow);
+            backdrop-filter: blur(22px);
+            box-shadow: 0 40px 80px rgba(15, 23, 42, 0.55);
             overflow: hidden;
-            transition: background 0.6s ease, border 0.6s ease, box-shadow 0.6s ease;
+            color: inherit;
         }
 
         body.light .legal-shell {
             background: var(--panel-bg-light);
-            box-shadow: var(--shadow-light);
+            box-shadow: 0 30px 60px rgba(15, 23, 42, 0.25);
         }
 
         header {
-            padding: clamp(1.5rem, 2vw, 2.25rem) clamp(2rem, 3vw, 3rem) clamp(1.25rem, 2vw, 2rem);
-            border-bottom: 1px solid var(--panel-border);
+            padding: clamp(2rem, 4vw, 3rem) clamp(2rem, 4vw, 3rem) clamp(1.5rem, 3vw, 2.25rem);
         }
 
         header h1 {
-            margin: 0;
-            font-size: clamp(1.75rem, 3vw, 2.5rem);
-            font-weight: 600;
-            letter-spacing: -0.02em;
+            margin: 0 0 0.6rem;
+            font-size: clamp(1.85rem, 4vw, 2.35rem);
+            letter-spacing: 0.02em;
         }
 
         header p {
-            margin: 0.75rem 0 0;
-            font-size: 1rem;
+            margin: 0;
             color: var(--text-muted);
+            max-width: 44ch;
         }
 
         body.light header p {
-            color: var(--text-muted-light);
+            color: rgba(71, 85, 105, 0.85);
         }
 
         .tablist {
             display: flex;
-            flex-wrap: wrap;
-            gap: 0.75rem;
-            padding: clamp(1.25rem, 2vw, 1.75rem) clamp(2rem, 3vw, 3rem) 0;
-            background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(15, 23, 42, 0));
+            gap: 1rem;
+            padding: 0 clamp(2rem, 4vw, 3rem);
+            border-bottom: 1px solid rgba(148, 163, 184, 0.25);
+            margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
         }
 
         .tablist button {
-            appearance: none;
-            border: 1px solid transparent;
-            border-radius: 999px;
-            padding: 0.65rem 1.6rem;
+            border: 1px solid var(--panel-border);
+            border-radius: 12px;
+            padding: 0.6rem 1.25rem;
             font-size: 0.95rem;
             font-weight: 500;
             letter-spacing: 0.015em;
@@ -125,15 +139,6 @@
             transition: background 0.2s ease;
         }
 
-        .tablist button:hover,
-        .tablist button:focus-visible {
-            outline: none;
-            border-color: rgba(96, 165, 250, 0.45);
-            background: var(--tab-hover);
-            transform: translateY(-1px);
-            box-shadow: 0 12px 24px rgba(37, 99, 235, 0.18);
-        }
-
         .tablist button[aria-selected="true"] {
             border-color: rgba(96, 165, 250, 0.65);
             background: rgba(96, 165, 250, 0.18);
@@ -149,7 +154,7 @@
         }
 
         main {
-            padding: 0 clamp(2rem, 3vw, 3rem) clamp(2.5rem, 4vw, 3.5rem);
+            padding: 0 clamp(2rem, 4vw, 3rem) clamp(2.5rem, 4vw, 3.5rem);
         }
 
         .tab-panel {
@@ -354,134 +359,170 @@
             <section id="privacy" class="tab-panel active" role="tabpanel" aria-labelledby="tab-privacy">
                 <h2>Privacy Policy</h2>
                 <p class="effective-date">Last updated: 2025-10-04</p>
-                <h3>Overview</h3>
-                <p>Puzzle Royale (the "Application") is provided by Sean McCarren (the "Service Provider"). This
-                    Privacy Policy explains how we collect, use, disclose, and protect information when you use the
-                    Application or visit our website at <a href="https://www.puzzleroyale.app" target="_blank"
-                        rel="noopener noreferrer">https://www.puzzleroyale.app</a>. By using the Application you agree
-                    to the practices described here.</p>
-                <h3>Data We Collect</h3>
-                <p>We collect the following information so we can run the Application and improve it:</p>
+                <h3>1. Scope and Data Controller</h3>
+                <p>This Privacy Policy governs the processing of information in connection with the Puzzle Royale mobile
+                    application (the "App") and the website <a href="https://www.puzzleroyale.app" target="_blank"
+                        rel="noopener noreferrer">https://www.puzzleroyale.app</a> (collectively, the "Services"). The
+                    Services are operated by Sean McCarren, Roggekamp 12, 2497 NA Den Haag, The Netherlands ("Puzzle
+                    Royale", "we", "us"). For purposes of the EU General Data Protection Regulation ("GDPR"), we are the
+                    data controller for the processing activities described herein.</p>
+                <h3>2. Categories of Personal Data</h3>
+                <p>We process the following categories of personal data:</p>
                 <ul>
-                    <li><strong>Account and profile data:</strong> when you authenticate with Google Sign-In we receive
-                        your Google account email address, display name, and profile image (if provided by Google). You
-                        may also choose to create an in-app display name and upload or capture a profile image.</li>
-                    <li><strong>Gameplay data:</strong> match history, rankings, achievements, and other game statistics
-                        generated while you play.</li>
-                    <li><strong>Diagnostic and usage data (third parties):</strong> Google Play Services, Google
-                        Analytics for Firebase, and Firebase Crashlytics automatically collect device identifiers, app
-                        version, performance metrics, and crash reports. Their privacy policies govern their handling of
-                        this data:
+                    <li><strong>Registration and account data:</strong> Google account identifier, email address,
+                        display
+                        name, and Google-provided profile image when you sign in with Google. You may voluntarily supply
+                        a
+                        display name and profile image inside the App.</li>
+                    <li><strong>Gameplay and usage data:</strong> match results, rankings, achievements, gameplay
+                        history,
+                        and other telemetry generated through your use of the Services.</li>
+                    <li><strong>Diagnostic data:</strong> device identifiers, crash reports, performance metrics, and
+                        analytics events collected automatically by Google Play Services, Google Analytics for Firebase,
+                        and Firebase Crashlytics. Each service processes personal data pursuant to its own privacy
+                        notice:
                         <ul>
                             <li><a href="https://www.google.com/policies/privacy/" target="_blank"
-                                    rel="noopener noreferrer">Google Play Services</a></li>
+                                    rel="noopener noreferrer">Google Privacy Policy</a></li>
                             <li><a href="https://firebase.google.com/support/privacy" target="_blank"
-                                    rel="noopener noreferrer">Google Analytics for Firebase</a></li>
-                            <li><a href="https://firebase.google.com/support/privacy/" target="_blank"
-                                    rel="noopener noreferrer">Firebase Crashlytics</a></li>
+                                    rel="noopener noreferrer">Firebase Privacy Notice</a></li>
                         </ul>
                     </li>
-                    <li><strong>Optional device permissions:</strong>
-                        <ul>
-                            <li>Android <code>INTERNET</code> (required) to enable multiplayer gameplay and sync data.
-                            </li>
-                            <li>Android <code>CAMERA</code> (optional) and iOS camera access (optional) to capture a
-                                profile image.</li>
-                            <li>Android <code>READ_EXTERNAL_STORAGE</code>/<code>READ_MEDIA_IMAGES</code> (optional) and
-                                iOS photo library access (optional) to select an existing profile image.</li>
-                        </ul>
-                        You can decline any optional permission, though related features may not work.
+                    <li><strong>Device permissions:</strong> (i) Android <code>INTERNET</code> (mandatory) for
+                        multiplayer and synchronisation; (ii) Android <code>CAMERA</code> and iOS camera access
+                        (optional)
+                        for capturing a profile picture; (iii) Android
+                        <code>READ_EXTERNAL_STORAGE</code>/<code>READ_MEDIA_IMAGES</code>
+                        and iOS photo-library access (optional) for selecting an existing picture. Declining an optional
+                        permission may disable the related feature.
                     </li>
                 </ul>
-                <p>We do not intentionally collect precise GPS location, contacts, SMS, or payment information at this
-                    time.</p>
-                <h3>How We Use Information</h3>
+                <p>We do not intentionally collect precise geolocation, payment card information, address book contents,
+                    or SMS content through the Services.</p>
+                <h3>3. Purposes and Legal Bases for Processing</h3>
+                <p>Your personal data is processed for the following purposes and legal bases:</p>
                 <ul>
-                    <li>Provide, personalise, and improve gameplay and user profiles.</li>
-                    <li>Authenticate accounts, sync progress across devices, and prevent fraud or cheating.</li>
-                    <li>Communicate about updates, security alerts, and policy changes.</li>
-                    <li>Monitor performance, diagnose issues, and fix crashes.</li>
+                    <li><strong>Contract performance (Article 6(1)(b) GDPR):</strong> to create and maintain your
+                        account,
+                        deliver multiplayer functionality, synchronise progress, and provide core gameplay features.
+                    </li>
+                    <li><strong>Legitimate interests (Article 6(1)(f) GDPR):</strong> to protect the Services against
+                        fraud
+                        and abuse (including cheat detection and enforcement), to analyse usage for service improvement,
+                        and to maintain the stability and security of our infrastructure. Our interests are balanced
+                        against your rights and freedoms.</li>
+                    <li><strong>Consent (Article 6(1)(a) GDPR):</strong> for optional features such as uploading a
+                        profile
+                        image or granting camera/photo-library permissions. You may withdraw consent at any time inside
+                        the App or by contacting us.</li>
                 </ul>
-                <h3>Legal Bases (EEA/UK Users)</h3>
-                <ul>
-                    <li><strong>Contract performance:</strong> providing the Application and related services.</li>
-                    <li><strong>Legitimate interests:</strong> analytics, security, and abuse prevention.</li>
-                    <li><strong>Consent:</strong> optional data such as profile photos or camera access. You can
-                        withdraw
-                        consent via in-app settings or by contacting us.</li>
-                </ul>
-                <h3>Sharing and Processing</h3>
-                <p>We use Google Firebase and related Google Cloud Platform services as processors to host, store, and
-                    manage data on our behalf. We do not sell or rent personal data. We may disclose information if
-                    required by law, to protect our rights or users, or in connection with a merger, acquisition, or
-                    asset sale.</p>
-                <h3>International Transfers</h3>
-                <p>Data may be stored or processed in Google data centres outside your home country, including within
-                    the United States. We rely on Google's safeguards, such as Standard Contractual Clauses, to protect
-                    cross-border transfers.</p>
-                <h3>Data Retention</h3>
-                <p>Account details and gameplay history are kept while your account is active. You can delete your
-                    account
-                    at any time using the in-app deletion option; deletion removes identifiable data and gameplay
-                    records
-                    within 30 days unless a longer period is required to meet legal obligations or investigate abuse.
-                    Aggregated, non-identifiable statistics may be retained.</p>
-                <h3>Your Rights</h3>
-                <p>Depending on your location, you may have the right to access, correct, delete, or export your data,
-                    to
-                    object to or restrict processing, and to withdraw consent where processing is based on consent. Use
-                    the in-app controls or contact <a href="mailto:mccarrenapps@gmail.com">mccarrenapps@gmail.com</a> to
-                    exercise these rights. You may also file a complaint with your local data protection authority.</p>
-                <h3>Children</h3>
-                <p>The Application is intended for players aged 13 and older. We do not knowingly allow children under
-                    13
-                    to create accounts or submit personal data. If you believe a child under 13 has provided personal
-                    data, contact us so we can delete it promptly.</p>
-                <h3>Security</h3>
-                <p>We protect data using Firebase Authentication, App Check, Play Integrity, access controls, and
-                    encrypted transport. No system is perfectly secure, but we will notify users and regulators of data
-                    breaches when required by law.</p>
-                <h3>Changes</h3>
-                <p>We may update this Privacy Policy to reflect changes to the Application or legal requirements. We
-                    will
-                    post the updated policy with a new effective date and, when appropriate, notify you via the
-                    Application, our website, or the app stores.</p>
-                <h3>Contact</h3>
-                <p>Email: <a href="mailto:mccarrenapps@gmail.com">mccarrenapps@gmail.com</a>. Please include "Puzzle
-                    Royale Privacy" in the subject line.</p>
-                <hr class="divider">
-                <p>This policy summarises how we handle data today. Consult a qualified legal professional to confirm it
-                    meets the laws in your region.</p>
+                <h3>4. Recipients and Processors</h3>
+                <p>We engage Google LLC and its affiliates (Firebase, Google Play Services, Google Analytics for
+                    Firebase,
+                    Firebase Crashlytics) as data processors pursuant to written data-processing agreements. Personal
+                    data
+                    may also be disclosed to competent authorities or legal counsel where disclosure is required to
+                    comply
+                    with legal obligations or to protect our legitimate interests (for example, in connection with
+                    enforcement of the Terms &amp; Conditions).</p>
+                <h3>5. International Data Transfers</h3>
+                <p>Personal data may be stored on or accessed from servers located outside the European Economic Area,
+                    including the United States. Such transfers rely on appropriate safeguards, including Standard
+                    Contractual Clauses approved by the European Commission and, where applicable, supplementary
+                    protective measures implemented by Google LLC.</p>
+                <h3>6. Retention Periods</h3>
+                <p>We retain account data and gameplay history for as long as your account remains active. When you use
+                    the in-app deletion function, we will delete or anonymise personal data within thirty (30) days,
+                    unless
+                    longer retention is required for legal, regulatory, or dispute-resolution purposes. Aggregated or
+                    anonymised analytics data may be retained indefinitely.</p>
+                <h3>7. Data Subject Rights</h3>
+                <p>Subject to applicable law, you may request access to, rectification or erasure of, or restriction of
+                    processing concerning your personal data. You may also object to processing based on legitimate
+                    interests, request data portability, or lodge a complaint with your local supervisory authority.
+                    Please
+                    submit requests via the in-app tools or by emailing <a
+                        href="mailto:mccarrenapps@gmail.com">mccarrenapps@gmail.com</a>.</p>
+                <h3>8. Children</h3>
+                <p>The Services are intended for individuals aged thirteen (13) years and older. We do not knowingly
+                    collect
+                    personal data from children under 13. If you are a parent or guardian and believe your child has
+                    provided personal data without consent, contact us so that we can delete the information promptly.
+                </p>
+                <h3>9. Security Measures</h3>
+                <p>We maintain administrative, technical, and physical safeguards appropriate to the nature of the data,
+                    including Firebase Authentication, App Check, Play Integrity API, encrypted transport, and access
+                    controls. While we strive to protect personal data, no security measure is infallible. We will
+                    notify
+                    affected users and competent authorities of personal-data breaches when legally required.</p>
+                <h3>10. Updates to this Policy</h3>
+                <p>We may revise this Privacy Policy from time to time to reflect changes in law, our processing
+                    activities, or the Services. Material changes will be communicated through the App, our website, or
+                    app
+                    store listings. Continued use of the Services after the effective date constitutes acknowledgement
+                    of
+                    the revised policy.</p>
+                <h3>11. Contact</h3>
+                <p>If you have questions about this Privacy Policy or our data practices, contact us at <a
+                        href="mailto:mccarrenapps@gmail.com">mccarrenapps@gmail.com</a>. You may also write to the
+                    postal
+                    address listed above. We endeavour to respond within thirty (30) days.</p>
             </section>
             <section id="terms" class="tab-panel" role="tabpanel" aria-labelledby="tab-terms">
                 <h2>Terms &amp; Conditions</h2>
                 <p class="effective-date">Last updated: 2025-10-04</p>
-                <h3>Acceptance of Terms</h3>
-                <p>By downloading, installing, or using Puzzle Royale (the "Application") you agree to these Terms &amp;
-                    Conditions (the "Terms"). If you do not agree, do not use the Application. You must be at least 13
-                    years old to create an account. Players aged 13 to 17 should review these Terms with a parent or
-                    legal guardian before playing.</p>
-                <h3>License and Ownership</h3>
-                <p>We grant you a personal, revocable, non-transferable, non-exclusive license to use the Application
-                    for
-                    personal entertainment. You may not copy, modify, distribute, reverse engineer, or create derivative
-                    works except where applicable law permits despite this restriction. All intellectual property rights
-                    in the Application remain with the Service Provider.</p>
-                <h3>Accounts and Profile Content</h3>
-                <p>You may authenticate via Google Sign-In. You are responsible for safeguarding your credentials and
-                    for
-                    any activity on your account. Display names and profile images must comply with the Acceptable Use
-                    section. You can delete your account at any time using the in-app deletion control.</p>
-                <h3>Future Purchases</h3>
-                <p>The Application is currently free to use. If we introduce in-app purchases or paid subscriptions
-                    later,
-                    we will present pricing, billing, and refund terms before you complete a purchase. App store billing
-                    policies will apply.</p>
-                <h3>Third-Party Services</h3>
-                <p>The Application relies on Google Play Services, Google Analytics for Firebase, and Firebase
-                    Crashlytics.
-                    Their terms and privacy policies govern use of those services, in addition to any terms required by
-                    your app store or device manufacturer.</p>
+                <h3>1. Acceptance and Eligibility</h3>
+                <p>These Terms &amp; Conditions (the "Terms") form a binding agreement between you and Sean McCarren,
+                    trading as Puzzle Royale ("Puzzle Royale", "we", "us", or "our"), governing your access to and
+                    use of the Puzzle Royale mobile application and related services (collectively, the "App"). By
+                    downloading, installing, accessing, or using the App you agree to be bound by these Terms. If you do
+                    not
+                    agree, you must not use the App. You represent that you are at least thirteen (13) years old;
+                    individuals
+                    aged 13 to 17 may only use the App with the consent of a parent or legal guardian who accepts
+                    responsibility for the minor’s use.</p>
+                <h3>2. Definitions</h3>
+                <ul>
+                    <li><strong>"Puzzle Royale", "we", "us", or "our"</strong> means Sean McCarren trading as Puzzle
+                        Royale.</li>
+                    <li><strong>"User", "you", or "your"</strong> means the natural person accessing or using the App.
+                    </li>
+                    <li><strong>"Content"</strong> means any text, graphics, gameplay data, images, or other material
+                        submitted, generated, or displayed through the App.</li>
+                    <li><strong>"Services"</strong> means the App, associated websites, and any related features
+                        provided by
+                        Puzzle Royale.</li>
+                </ul>
+                <h3>3. Licence Grant</h3>
+                <p>Subject to your compliance with these Terms, we grant you a personal, revocable, non-exclusive,
+                    non-transferable, and non-sublicensable licence to install and use the App solely for your personal
+                    entertainment. All rights not expressly granted are reserved. You must not copy, modify, distribute,
+                    publicly perform, reverse engineer, decompile, or create derivative works from the App except to the
+                    extent such restrictions are prohibited by applicable law.</p>
+                <h3>4. Accounts and Credentials</h3>
+                <p>The App uses Google Sign-In for authentication. You are responsible for safeguarding your account
+                    credentials and for all activities that occur under your account. You must promptly notify us of any
+                    unauthorised use. You may delete your account through the in-app deletion feature at any time.</p>
+                <h3>5. User Content</h3>
+                <p>You may submit display names, profile images, or other Content. You grant Puzzle Royale a worldwide,
+                    royalty-free, non-exclusive licence to host, reproduce, display, and otherwise use such Content
+                    solely for
+                    operating and improving the App. You represent and warrant that you have all rights necessary to
+                    submit the
+                    Content and that it does not infringe or violate any third-party rights.</p>
+                <h3>6. Future Paid Features</h3>
+                <p>The App is presently provided without charge. We may introduce in-app purchases or subscription-based
+                    services in the future. If we do so, we will present applicable pricing, billing terms, and refund
+                    policies
+                    before you complete any purchase. Purchases will be processed through your app store provider, and
+                    that
+                    provider’s terms will govern payment processing and refunds.</p>
+                <h3>7. Third-Party Services</h3>
+                <p>The App integrates with third-party services, including Google Play Services, Google Analytics for
+                    Firebase,
+                    and Firebase Crashlytics. Your use of those services is subject to their respective terms in
+                    addition to
+                    these Terms:</p>
                 <ul>
                     <li><a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer">Google
                             Play Services Terms</a></li>
@@ -490,68 +531,92 @@
                     <li><a href="https://firebase.google.com/terms/crashlytics" target="_blank"
                             rel="noopener noreferrer">Firebase Crashlytics Terms</a></li>
                 </ul>
-                <h3>Acceptable Use</h3>
+                <h3>8. Acceptable Use</h3>
                 <p>You agree not to:</p>
                 <ul>
-                    <li>Cheat, exploit bugs, use bots, or otherwise manipulate gameplay or matchmaking.</li>
-                    <li>Upload or display content that is unlawful, defamatory, hateful, sexual, or otherwise
-                        inappropriate.</li>
-                    <li>Harass, threaten, or abuse other players.</li>
-                    <li>Interfere with or disrupt servers, networks, or security features.</li>
+                    <li>engage in cheating, automation, scripting, or exploitation of bugs or vulnerabilities;</li>
+                    <li>submit or display Content that is unlawful, defamatory, obscene, hateful, or otherwise
+                        objectionable;</li>
+                    <li>harass, threaten, or impersonate other users;</li>
+                    <li>interfere with or disrupt servers, networks, security features, or access controls.</li>
                 </ul>
-                <p>We may suspend or terminate accounts, remove progress, delete content, or block re-registration if we
-                    suspect violations. Offensive display names or images may be removed at our discretion.</p>
-                <h3>Service Availability</h3>
-                <p>The Application requires an internet connection. We are not liable for outages caused by network
-                    issues,
-                    device problems, or third-party platforms. We may update, suspend, or discontinue the Application or
-                    specific features at any time.</p>
-                <h3>Disclaimers</h3>
-                <p>The Application is provided "as is" and "as available" without warranties of any kind, including
-                    implied warranties of merchantability, fitness for a particular purpose, or non-infringement, to the
-                    extent allowed by law.</p>
-                <h3>Limitation of Liability</h3>
-                <p>To the fullest extent permitted by law, we will not be liable for indirect, incidental, special,
-                    consequential, or punitive damages, or for lost profits, revenues, data, or goodwill. Our total
-                    liability for any claim will not exceed the greater of (a) EUR 10 or (b) the amounts you paid to us
-                    (if
-                    any) in the six months before the event giving rise to the claim. These limits do not apply where
-                    prohibited by law.</p>
-                <h3>Indemnification</h3>
-                <p>You agree to indemnify and hold the Service Provider harmless from claims, damages, and expenses
-                    arising out of your breach of these Terms or misuse of the Application.</p>
-                <h3>Termination</h3>
-                <p>You may stop using the Application at any time. We may suspend or terminate your access if you
-                    violate
-                    these Terms, if we discontinue the Application, or for other legitimate reasons. Upon termination
-                    your
-                    license ends and you must cease using the Application. We may retain data in accordance with the
-                    Privacy Policy.</p>
-                <h3>Governing Law and Dispute Resolution</h3>
-                <p>These Terms are governed by the laws of the Netherlands. Disputes will be submitted to the competent
-                    courts in Amsterdam, the Netherlands. Mandatory consumer protection laws in your country of
-                    residence
-                    may still apply.</p>
-                <h3>Notices</h3>
-                <p>We may provide notices via the Application, our website at <a href="https://www.puzzleroyale.app"
-                        target="_blank" rel="noopener noreferrer">https://www.puzzleroyale.app</a>, app store listings,
-                    or the email linked to your account. You can contact us at <a
-                        href="mailto:mccarrenapps@gmail.com">mccarrenapps@gmail.com</a>.</p>
-                <h3>Force Majeure</h3>
-                <p>We are not responsible for delays or failures caused by events beyond our reasonable control,
+                <p>We reserve the right to investigate suspected violations. We may suspend, restrict, or terminate
+                    accounts,
+                    revoke in-app items, or delete Content where we reasonably believe these Terms have been breached.
+                </p>
+                <h3>9. Availability and Updates</h3>
+                <p>The App requires an active internet connection. Availability may be affected by network outages,
+                    device
+                    constraints, or third-party service interruptions. We may modify, suspend, or discontinue any
+                    feature or the
+                    entire App at any time without liability, subject to applicable consumer-protection laws.</p>
+                <h3>10. Disclaimers</h3>
+                <p>The App is provided on an "as is" and "as available" basis, without warranties of any kind, whether
+                    express, implied, statutory, or otherwise, including implied warranties of merchantability, fitness
+                    for a
+                    particular purpose, title, and non-infringement. We do not warrant that the App will be
+                    uninterrupted or
+                    error-free.</p>
+                <h3>11. Limitation of Liability</h3>
+                <p>To the maximum extent permitted by law, Puzzle Royale shall not be liable for any indirect,
+                    incidental,
+                    consequential, special, or punitive damages, or for loss of profits, revenues, data, goodwill, or
+                    other
+                    intangible losses arising out of or in connection with your use of the App. Our aggregate liability
+                    for all
+                    claims arising out of or relating to the App shall not exceed the greater of (a) EUR 10 or (b) the
+                    total
+                    amounts you paid to us, if any, in the six (6) months preceding the event giving rise to the
+                    liability. These
+                    limitations do not exclude liability for intentional misconduct, gross negligence, or any matter for
+                    which
+                    liability cannot be excluded under applicable law.</p>
+                <h3>12. Indemnification</h3>
+                <p>You agree to indemnify, defend, and hold harmless Puzzle Royale from and against any claims, damages,
+                    losses,
+                    liabilities, and expenses (including reasonable legal fees) arising out of or in connection with
+                    your breach
+                    of these Terms or your misuse of the App.</p>
+                <h3>13. Termination</h3>
+                <p>You may cease using the App at any time. We may suspend or terminate your access if you materially
+                    breach
+                    these Terms, if we discontinue the App, or if required by law. Upon termination, the licence granted
+                    to you
+                    under Section 3 terminates immediately, and you must uninstall the App. Sections that by their
+                    nature should
+                    survive termination shall remain in force.</p>
+                <h3>14. Governing Law and Jurisdiction</h3>
+                <p>These Terms are governed by and construed in accordance with the laws of the Netherlands. Any dispute
+                    arising
+                    out of or relating to the App or these Terms shall be submitted to the exclusive jurisdiction of the
+                    competent courts in Amsterdam, The Netherlands. Mandatory consumer-protection laws in your country
+                    of
+                    residence may grant you additional rights.</p>
+                <h3>15. Notices</h3>
+                <p>We may provide notices to you by email, in-app messages, postings within the App, or updates to our
+                    website.
+                    Notices to Puzzle Royale must be sent to <a
+                        href="mailto:mccarrenapps@gmail.com">mccarrenapps@gmail.com</a>.
+                </p>
+                <h3>16. Force Majeure</h3>
+                <p>We are not responsible for any failure to perform due to causes beyond our reasonable control,
                     including
-                    natural disasters, acts of government, internet outages, or labour disputes.</p>
-                <h3>Changes to These Terms</h3>
-                <p>We may update these Terms occasionally. We will post the revised Terms with a new effective date and,
-                    when required, provide additional notice. Continued use after the changes take effect means you
-                    accept
-                    the updated Terms.</p>
-                <h3>Contact</h3>
-                <p>Email: <a href="mailto:mccarrenapps@gmail.com">mccarrenapps@gmail.com</a>. Please include "Puzzle
-                    Royale Terms" in the subject line.</p>
+                    natural disasters, acts of government, labour disputes, internet or telecommunication failures, or
+                    acts of
+                    third parties.</p>
+                <h3>17. Changes to the Terms</h3>
+                <p>We may amend these Terms from time to time. When we do, we will update the "Last updated" date above
+                    and
+                    provide notice in accordance with applicable law. Your continued use of the App after the effective
+                    date of
+                    the revised Terms constitutes acceptance of the changes.</p>
+                <h3>18. Contact</h3>
+                <p>Questions or concerns regarding these Terms may be directed to <a
+                        href="mailto:mccarrenapps@gmail.com">mccarrenapps@gmail.com</a>.</p>
                 <hr class="divider">
-                <p>This summary is for information only. Consult a qualified lawyer to verify compliance with the laws
-                    that apply to you.</p>
+                <p>These Terms are intended to comply with applicable law and do not limit any non-waivable statutory
+                    rights you
+                    may have.</p>
             </section>
         </main>
         <footer>
