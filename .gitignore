@@ -1,0 +1,12 @@
+# Build outputs and sensitive files
+app/
+
+# Local development
+.DS_Store
+*.log
+.vscode/
+.idea/
+
+# Backup files
+*_backup.html
+*.bak

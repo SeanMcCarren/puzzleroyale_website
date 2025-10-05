@@ -1,10 +1,24 @@
 # Flutter Web App Integration Guide
 
+## ⚠️ IMPORTANT: Separate Repository Approach
+
+**DO NOT commit Flutter build files to this repository!** 
+
+Flutter compiled files contain API keys and sensitive configuration. Instead, we deploy your Flutter app using Cloudflare Pages with a separate project configuration.
+
 ## 📱 Overview
 
-Your Flutter app is deployed at: `https://puzzleroyale.app/app/`
+Your Flutter app will be deployed separately at: `https://puzzleroyale.app/app/`
 
-## 🔄 Deployment Workflow
+## 🏗️ Proper Deployment Architecture
+
+We'll use **two Cloudflare Pages projects**:
+1. **puzzleroyale-marketing** (this repo) - Static marketing site at `/`
+2. **puzzleroyale-app** (puzzle_app repo) - Flutter app deployed separately
+
+Then we'll use Cloudflare Workers or routing to make them appear as one site.
+
+## 🔄 Deployment Workflow (Updated)
 
 ### When you make changes to your Flutter app:
 
