@@ -1,7 +1,4 @@
 # Cloudflare Pages Redirects
 
-# Redirect /app/* to Flutter app deployed on Cloudflare Pages
-/app/* https://puzzle-app.pages.dev/:splat 200
-
-# Ensure other routes work correctly
+# Privacy pages
 /privacy/* /privacy/index.html 200
