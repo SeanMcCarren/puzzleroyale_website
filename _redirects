@@ -1,7 +1,7 @@
 # Cloudflare Pages Redirects
 
-# Redirect /app/* to Flutter app (update with your actual Cloudflare Pages URL after deployment)
-/app/* https://puzzleroyale-app.pages.dev/:splat 200
+# Redirect /app/* to Flutter app deployed on Cloudflare Pages
+/app/* https://puzzle-app.pages.dev/:splat 200
 
 # Ensure other routes work correctly
 /privacy/* /privacy/index.html 200
