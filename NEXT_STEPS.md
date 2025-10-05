@@ -13,12 +13,13 @@
 ### Step 1: Create Cloudflare Pages Project for Flutter
 
 1. **Go to**: https://dash.cloudflare.com
-2. **Navigate to**: Pages (left sidebar)
-3. **Click**: "Create a project"
-4. **Click**: "Connect to Git"
-5. **Select**: GitHub
-6. **Choose repository**: `SeanMcCarren/puzzle_app`
-7. **Click**: "Begin setup"
+2. **Navigate to**: "Workers & Pages" (left sidebar)
+3. **Click the "Pages" tab** at the top
+4. **Click**: "Create application" or "Create a project"
+5. **Click**: "Connect to Git"
+6. **Select**: GitHub
+7. **Choose repository**: `SeanMcCarren/puzzle_app`
+8. **Click**: "Begin setup"
 
 ### Step 2: Configure Build Settings
 
@@ -27,13 +28,27 @@
 
 **Build configuration**:
 ```
-Framework preset: Flutter
+Framework preset: None (Flutter not in list, we'll configure manually)
 Build command: flutter build web --release
 Build output directory: build/web
 Root directory: (leave empty)
 ```
 
-**Environment variables** (optional, but recommended):
+**Environment variables** (REQUIRED for Flutter):
+
+Click "Add variable" and add:
+```
+Name: FLUTTER_VERSION
+Value: stable
+```
+
+Or for a specific version:
+```
+Name: FLUTTER_VERSION
+Value: 3.24.0
+```
+
+Optional but recommended:
 ```
 Name: FLUTTER_WEB_CANVASKIT_URL
 Value: auto
@@ -86,7 +101,11 @@ Once both deployments are complete:
 
 ### Build fails with "Flutter not found"
 
-Make sure you selected "Flutter" as the framework preset. Cloudflare will automatically install Flutter.
+Make sure you added the environment variable:
+```
+FLUTTER_VERSION=stable
+```
+This tells Cloudflare to install Flutter before building.
 
 ### App loads but 404 on refresh
 
