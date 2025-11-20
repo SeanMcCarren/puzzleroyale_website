@@ -1,0 +1,14 @@
+[
+    {
+        "relation": [
+            "delegate_permission/common.handle_all_urls"
+        ],
+        "target": {
+            "namespace": "android_app",
+            "package_name": "com.mccarrenapps.puzzleroyale",
+            "sha256_cert_fingerprints": [
+                "04:A8:71:6C:80:53:7D:3C:33:CC:D3:1F:E9:C4:15:EE:CD:A0:E5:95:77:93:1D:44:B3:6E:AF:7A:CF:C4:A9:E9"
+            ]
+        }
+    }
+]
