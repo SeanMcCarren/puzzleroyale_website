@@ -8,96 +8,89 @@ Flutter compiled files contain API keys and sensitive configuration. Instead, we
 
 ## 📱 Overview
 
-Your Flutter app will be deployed separately at: `https://puzzleroyale.app/app/`
+Your Flutter app is deployed at: `https://app.puzzleroyale.app/`
 
-## 🏗️ Proper Deployment Architecture
+## 🏗️ Deployment Architecture
 
-We'll use **two Cloudflare Pages projects**:
-1. **puzzleroyale-marketing** (this repo) - Static marketing site at `/`
-2. **puzzleroyale-app** (puzzle_app repo) - Flutter app deployed separately
+We use **two separate Cloudflare Pages projects**:
+1. **puzzleroyale-marketing** (this repo) - Static marketing site at `puzzleroyale.app`
+2. **puzzleroyale-app** (puzzle_app repo) - Flutter app at `app.puzzleroyale.app` (subdomain)
 
-Then we'll use Cloudflare Workers or routing to make them appear as one site.
-
-## 🔄 Deployment Workflow (Updated)
+## 🔄 Deployment Workflow
 
 ### When you make changes to your Flutter app:
 
 1. **Build the Flutter app:**
    ```powershell
    cd ..\puzzle_app
-   flutter build web --release --base-href /app/
+   flutter build web --release --base-href /
    ```
 
-2. **Copy to website repo:**
+2. **Commit and push to puzzle_app repo:**
    ```powershell
-   Copy-Item -Path ".\build\web\*" -Destination "..\puzzleroyale_website\app\" -Recurse -Force
-   ```
-
-3. **Commit and push:**
-   ```powershell
-   cd ..\puzzleroyale_website
-   git add app/
-   git commit -m "Update Flutter app build"
+   git add .
+   git commit -m "Update Flutter app"
    git push origin main
    ```
 
-4. **Automatic deployment:**
-   - Cloudflare Pages will automatically deploy your changes
-   - Usually takes 30-60 seconds
+3. **Automatic deployment:**
+   - Cloudflare Pages will automatically build and deploy to `app.puzzleroyale.app`
+   - Usually takes 1-2 minutes
 
 ## 🛠️ Quick Update Script
 
-Save this as `update-app.ps1` in your puzzle_app directory:
+Save this as `deploy-app.ps1` in your puzzle_app directory:
 
 ```powershell
 # Build Flutter app
-flutter build web --release --base-href /app/
-
-# Copy to website repo
-Copy-Item -Path ".\build\web\*" -Destination "..\puzzleroyale_website\app\" -Recurse -Force
-
-# Navigate to website repo
-cd ..\puzzleroyale_website
+flutter build web --release --base-href /
 
 # Commit and push
-git add app/
+git add .
 git commit -m "Update Flutter app - $(Get-Date -Format 'yyyy-MM-dd HH:mm')"
 git push origin main
 
-Write-Host "✅ Flutter app updated and deployed!" -ForegroundColor Green
+Write-Host "✅ Flutter app pushed! Cloudflare will auto-deploy to app.puzzleroyale.app" -ForegroundColor Green
 ```
 
-Run it with: `.\update-app.ps1`
+Run it with: `.\deploy-app.ps1`
 
 ## 📂 Repository Structure
 
+**puzzleroyale_website/** (this repo - marketing site)
 ```
 puzzleroyale_website/
 ├── index.html              # Marketing homepage
 ├── privacy/                # Legal pages
 │   └── index.html
-├── app/                    # Flutter Web app (built files)
-│   ├── index.html
-│   ├── main.dart.js
-│   ├── flutter.js
-│   ├── assets/
-│   └── ...
+├── delete-account/         # Account deletion page
+│   └── index.html
 ├── css/                    # Marketing site styles
 └── js/                     # Marketing site scripts
+```
+
+**puzzle_app/** (separate repo - Flutter app)
+```
+puzzle_app/
+├── lib/                    # Flutter source code
+├── web/                    # Web-specific files
+├── pubspec.yaml
+└── ...
 ```
 
 ## 🔗 URL Structure
 
 - `puzzleroyale.app/` → Marketing homepage
-- `puzzleroyale.app/app/` → Flutter Web app
+- `app.puzzleroyale.app/` → Flutter Web app (subdomain)
 - `puzzleroyale.app/privacy/` → Legal pages
+- `puzzleroyale.app/delete-account/` → Account deletion page
 
 ## ⚠️ Important Notes
 
-1. **Base HREF**: Always build with `--base-href /app/` so assets load correctly
-2. **Automatic Deployment**: Every push to main triggers Cloudflare Pages deployment
-3. **Build Directory**: The `/app` folder contains compiled Flutter code (not source)
-4. **Source Control**: Keep your Flutter source in the `puzzle_app` repo
+1. **Base HREF**: Build with `--base-href /` since app is at root of subdomain
+2. **Automatic Deployment**: Every push to puzzle_app main triggers Cloudflare Pages deployment
+3. **Separate Repos**: Marketing site and Flutter app are in separate repositories
+4. **DNS**: The `app.` subdomain is configured in Cloudflare to point to the puzzle_app Pages project
 
 ## 🚀 Future Enhancements
 
@@ -123,13 +116,16 @@ puzzleroyale_website/
    Visit: `http://localhost:8000`
 
 2. **Test Flutter app:**
-   Visit: `http://localhost:8000/app/`
+   ```powershell
+   cd puzzle_app
+   flutter run -d chrome
+   ```
 
 ## 📊 Performance Tips
 
 1. **Optimize build size:**
    ```powershell
-   flutter build web --release --base-href /app/ --web-renderer canvaskit
+   flutter build web --release --base-href / --web-renderer canvaskit
    ```
 
 2. **Analyze bundle:**
