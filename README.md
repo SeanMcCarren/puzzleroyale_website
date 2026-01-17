@@ -30,9 +30,3 @@ python -m http.server 8000
 
 # Then visit http://localhost:8000
 ```
-
-## Notes
-
-- Both pages feature dark/light theme toggle
-- Privacy page includes "Back to Home" link
-- Footer links updated to point to the new structure
