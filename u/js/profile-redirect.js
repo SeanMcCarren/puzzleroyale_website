@@ -83,8 +83,10 @@ function buildWebAppUrl(uid) {
 function buildAndroidIntentUrl(uid) {
     // Android Intent URL format:
     // intent://host/path#Intent;scheme=https;package=com.example.app;S.browser_fallback_url=encoded_url;end
-    const fallbackUrl = encodeURIComponent(window.location.href);
-    return `intent://app.puzzleroyale.app/app/profile?uid=${uid}#Intent;scheme=https;package=${CONFIG.androidPackage};S.browser_fallback_url=${fallbackUrl};end`;
+    const fallbackUrl = encodeURIComponent(buildWebAppUrl(uid));
+    // Use the marketing domain host (puzzleroyale.app) so Android App Links (assetlinks.json)
+    // hosted at that domain will match the incoming URL and verify the app.
+    return `intent://puzzleroyale.app/u/${uid}#Intent;scheme=https;package=${CONFIG.androidPackage};S.browser_fallback_url=${fallbackUrl};end`;
 }
 
 /**
