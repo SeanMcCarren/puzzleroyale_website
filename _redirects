@@ -1,5 +1,5 @@
 # Cloudflare Pages Redirects
 
 # Profile sharing deep links
-# All /u/:uid routes serve the same HTML that handles the redirect logic
 /u/:uid /u/index.html 200
+/u/:uid/* /u/index.html 200
