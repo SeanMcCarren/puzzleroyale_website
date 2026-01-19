@@ -18,5 +18,10 @@ export async function onRequest(context) {
     }
 
     const target = `/u/index.html?uid=${encodeURIComponent(resolvedUid)}`;
-    return Response.redirect(target, 302);
+    return new Response(null, {
+        status: 302,
+        headers: {
+            Location: target,
+        },
+    });
 }

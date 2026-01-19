@@ -20,5 +20,10 @@ export async function onRequest(context) {
 
     // Redirect to the static page which will read ?uid= from query params
     const target = `/u/index.html?uid=${encodeURIComponent(resolvedUid)}`;
-    return Response.redirect(target, 302);
+    return new Response(null, {
+        status: 302,
+        headers: {
+            Location: target,
+        },
+    });
 }
