@@ -17,17 +17,6 @@ export async function onRequest(context) {
         });
     }
 
-    const payload = {
-        invoked: true,
-        uid: resolvedUid,
-        pathname: url.pathname,
-        query: Object.fromEntries(url.searchParams.entries()),
-        host: url.host,
-        timestamp: new Date().toISOString(),
-    };
-
-    return new Response(JSON.stringify(payload, null, 2), {
-        status: 200,
-        headers: { 'Content-Type': 'application/json' },
-    });
+    const target = `/u/index.html?uid=${encodeURIComponent(resolvedUid)}`;
+    return Response.redirect(target, 302);
 }

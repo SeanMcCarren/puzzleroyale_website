@@ -18,18 +18,7 @@ export async function onRequest(context) {
         });
     }
 
-    // DEBUG: return JSON so we can confirm the function runs and what it parsed
-    const payload = {
-        invoked: true,
-        uid: resolvedUid,
-        pathname: url.pathname,
-        query: Object.fromEntries(url.searchParams.entries()),
-        host: url.host,
-        timestamp: new Date().toISOString(),
-    };
-
-    return new Response(JSON.stringify(payload, null, 2), {
-        status: 200,
-        headers: { 'Content-Type': 'application/json' },
-    });
+    // Redirect to the static page which will read ?uid= from query params
+    const target = `/u/index.html?uid=${encodeURIComponent(resolvedUid)}`;
+    return Response.redirect(target, 302);
 }
