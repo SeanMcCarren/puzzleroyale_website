@@ -1,22 +1,17 @@
-// Cloudflare Pages Function to serve the profile redirect page
-// This handles /u/:uid routes
+// Cloudflare Pages Function to handle /u/:uid routes
+// Redirects the browser to the static `/u/index.html?uid={uid}` page
 
 export async function onRequest(context) {
-    // Fetch the static HTML file
     const url = new URL(context.request.url);
-    const htmlUrl = `${url.origin}/u/index.html`;
+    // Extract the UID from the pathname (/u/{uid} or /u/{uid}/...)
+    const parts = url.pathname.split('/').filter(Boolean);
+    const uid = parts[1] || '';
 
-    const response = await fetch(htmlUrl);
-
-    if (!response.ok) {
-        return new Response('Profile page not found', { status: 404 });
+    if (!uid) {
+        return new Response('Missing UID', { status: 400 });
     }
 
-    const html = await response.text();
-
-    return new Response(html, {
-        headers: {
-            'Content-Type': 'text/html;charset=UTF-8',
-        },
-    });
+    // Redirect to the static page which will read ?uid= from query params
+    const target = `/u/index.html?uid=${encodeURIComponent(uid)}`;
+    return Response.redirect(target, 302);
 }
