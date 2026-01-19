@@ -134,16 +134,16 @@ function init() {
         showLoading();
 
         if (isAndroid()) {
-            // Android: Use Intent URL
+            // Android: Try multiple open strategies (intent href, anchor click, iframe)
             const intentUrl = buildAndroidIntentUrl(uid);
+            console.log('[profile-redirect] Android detected. uid=', uid);
+            console.log('[profile-redirect] intentUrl=', intentUrl);
 
             // Set a timeout to show fallback content if app doesn't open
             const timeout = setTimeout(() => {
+                console.warn('[profile-redirect] app open not detected — showing fallback');
                 showContent();
             }, 2500);
-
-            // Attempt to open the app
-            window.location.href = intentUrl;
 
             // If the page becomes hidden, the app probably opened successfully
             document.addEventListener('visibilitychange', () => {
@@ -151,6 +151,40 @@ function init() {
                     clearTimeout(timeout);
                 }
             });
+
+            // Primary: top-level navigation to intent URL
+            try {
+                window.location.href = intentUrl;
+            } catch (e) {
+                console.warn('[profile-redirect] window.location.href failed:', e);
+            }
+
+            // Secondary: create an anchor and click it (some browsers allow this)
+            setTimeout(() => {
+                try {
+                    const a = document.createElement('a');
+                    a.href = intentUrl;
+                    a.style.display = 'none';
+                    document.body.appendChild(a);
+                    a.click();
+                    a.remove();
+                } catch (e) {
+                    console.warn('[profile-redirect] anchor click failed:', e);
+                }
+            }, 150);
+
+            // Tertiary: iframe fallback (may be blocked on some browsers)
+            setTimeout(() => {
+                try {
+                    const ifr = document.createElement('iframe');
+                    ifr.style.display = 'none';
+                    ifr.src = intentUrl;
+                    document.body.appendChild(ifr);
+                    setTimeout(() => ifr.remove(), 2000);
+                } catch (e) {
+                    console.warn('[profile-redirect] iframe method failed:', e);
+                }
+            }, 300);
 
         } else if (isIOS()) {
             // iOS: Try Universal Link first
