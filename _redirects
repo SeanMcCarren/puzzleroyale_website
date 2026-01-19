@@ -1,4 +1,8 @@
 # Cloudflare Pages Redirects
 
+# Profile sharing deep links
+# All /u/:uid routes serve the same HTML that handles the redirect logic
+/u/* /u/index.html 200
+
 # Privacy pages
 /privacy/* /privacy/index.html 200
