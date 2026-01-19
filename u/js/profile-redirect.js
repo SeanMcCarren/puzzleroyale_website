@@ -33,14 +33,19 @@ const CONFIG = {
  * Assumes URL pattern: /u/{uid}
  */
 function getUidFromUrl() {
-    const pathParts = window.location.pathname.split('/');
+    // Prefer query parameter `uid` (used when we redirect to /u/index.html?uid=...)
+    const urlParams = new URLSearchParams(window.location.search);
+    const uidFromQuery = urlParams.get('uid');
+    if (uidFromQuery) return uidFromQuery;
+
+    // Fallback to path-based uid: /u/{uid}
+    const pathParts = window.location.pathname.split('/').filter(Boolean);
     const uIndex = pathParts.indexOf('u');
-    if (uIndex !== -1 && pathParts[uIndex + 1]) {
+    if (uIndex !== -1 && pathParts[uIndex + 1] && pathParts[uIndex + 1] !== 'index.html') {
         return pathParts[uIndex + 1];
     }
-    // Also check query params as fallback
-    const urlParams = new URLSearchParams(window.location.search);
-    return urlParams.get('uid');
+
+    return null;
 }
 
 /**
