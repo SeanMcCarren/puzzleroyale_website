@@ -2,8 +2,7 @@
 
 # Profile sharing deep links
 # Serve the same static HTML for any /u/* path so the page's JS can handle the uid.
-/u/index.html /u/index.html 200
-/u/ /u/index.html 200
-/u/* /u/index.html 200
+# Profile sharing deep links are managed in the Cloudflare Pages Redirects UI.
+# Keeping this file without a `/u/*` rule avoids Pages' infinite-loop validator.
 
 # (Do NOT add rules that map /privacy/* to /privacy/index.html — that causes infinite loops)
