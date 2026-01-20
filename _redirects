@@ -2,6 +2,8 @@
 
 # Profile sharing deep links
 # Serve the same static HTML for any /u/* path so the page's JS can handle the uid.
+/u/index.html /u/index.html 200
+/u/ /u/index.html 200
 /u/* /u/index.html 200
 
 # (Do NOT add rules that map /privacy/* to /privacy/index.html — that causes infinite loops)
