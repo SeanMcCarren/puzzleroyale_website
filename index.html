@@ -111,6 +111,23 @@
     </footer>
 
     <!-- Scripts -->
+    <script>
+        (function () {
+            // If the path is /u/{uid} but the server served the main index,
+            // redirect the browser to the profile redirect page so the
+            // app-opening logic runs. This is a client-side fallback
+            // for hosts that don't apply the /u/* -> /u/index.html rule.
+            try {
+                var m = window.location.pathname.match(/^\/u\/([^\/\?#]+)/);
+                if (m && m[1] && !window.location.search.includes('uid=')) {
+                    var uid = encodeURIComponent(m[1]);
+                    window.location.replace('/u/index.html?uid=' + uid);
+                }
+            } catch (e) {
+                /* no-op */
+            }
+        })();
+    </script>
     <script src="/js/theme.js"></script>
     <script src="/js/smooth-scroll.js"></script>
     <script src="/js/utils.js"></script>
