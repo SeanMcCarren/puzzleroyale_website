@@ -7,6 +7,16 @@
     const tabs = Array.from(document.querySelectorAll('.tablist button'));
     const panels = Array.from(document.querySelectorAll('.tab-panel'));
 
+    function activateTabByHash() {
+        const hash = window.location.hash.substring(1); // Remove the #
+        if (hash) {
+            const targetTab = tabs.find(tab => tab.getAttribute('data-target') === hash);
+            if (targetTab) {
+                targetTab.click();
+            }
+        }
+    }
+
     tabs.forEach((tab) => {
         tab.addEventListener('click', () => {
             const targetId = tab.getAttribute('data-target');
@@ -27,14 +37,7 @@
         });
     });
 
-    // Handle hash navigation (e.g., /privacy/#terms)
-    window.addEventListener('load', () => {
-        const hash = window.location.hash.substring(1); // Remove the #
-        if (hash) {
-            const targetTab = tabs.find(tab => tab.getAttribute('data-target') === hash);
-            if (targetTab) {
-                targetTab.click();
-            }
-        }
-    });
+    // Handle hash navigation (e.g., /privacy/#terms) on load and hashchange
+    window.addEventListener('load', activateTabByHash);
+    window.addEventListener('hashchange', activateTabByHash);
 })();
