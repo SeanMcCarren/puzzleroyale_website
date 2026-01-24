@@ -9,12 +9,27 @@
 
     function activateTabByHash() {
         const hash = window.location.hash.substring(1); // Remove the #
+        // Remove 'active' from all panels first
+        panels.forEach(panel => {
+            panel.classList.remove('active');
+            panel.setAttribute('tabindex', '-1');
+        });
+        tabs.forEach(tab => tab.setAttribute('aria-selected', 'false'));
+
         if (hash) {
             const targetTab = tabs.find(tab => tab.getAttribute('data-target') === hash);
-            if (targetTab) {
-                targetTab.click();
+            const targetPanel = panels.find(panel => panel.id === hash);
+            if (targetTab && targetPanel) {
+                targetTab.setAttribute('aria-selected', 'true');
+                targetPanel.classList.add('active');
+                targetPanel.removeAttribute('tabindex');
+                return;
             }
         }
+        // Default to first tab if no hash or invalid hash
+        tabs[0].setAttribute('aria-selected', 'true');
+        panels[0].classList.add('active');
+        panels[0].removeAttribute('tabindex');
     }
 
     tabs.forEach((tab) => {
