@@ -5,4 +5,11 @@
 # Profile sharing deep links are managed in the Cloudflare Pages Redirects UI.
 # Keeping this file without a `/u/*` rule avoids Pages' infinite-loop validator.
 
+# Daily deep links
+# Serve the same static HTML for any /daily/* path so the page's JS can handle the id.
+/daily/* /daily/index.html 200
+
+# Profile deep links (explicit)
+/u/* /u/index.html 200
+
 # (Do NOT add rules that map /privacy/* to /privacy/index.html — that causes infinite loops)
