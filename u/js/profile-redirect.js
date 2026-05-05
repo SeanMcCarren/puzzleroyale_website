@@ -6,15 +6,13 @@ const CONFIG = {
     androidPackage: 'com.mccarrenapps.puzzleroyale',
 
     // Your iOS App Store ID (numeric ID from App Store Connect)
-    // TODO: Update this when iOS app is published
-    iosAppId: 'YOUR_IOS_APP_ID',
+    iosAppId: '6762206683',
 
     // Play Store URL
     playStoreUrl: 'https://play.google.com/store/apps/details?id=com.mccarrenapps.puzzleroyale',
 
     // App Store URL
-    // TODO: Update this when iOS app is published
-    appStoreUrl: 'https://apps.apple.com/app/idYOUR_IOS_APP_ID',
+    appStoreUrl: 'https://apps.apple.com/app/id6762206683',
 
     // Flutter web app base URL
     webAppUrl: 'https://app.puzzleroyale.app',

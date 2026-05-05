@@ -1,0 +1,117 @@
+main {
+    display: grid;
+    gap: 2rem;
+}
+
+.support-intro {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem;
+    padding: clamp(1.35rem, 2.5vw, 1.8rem);
+    border: 1px solid rgba(148, 163, 184, 0.28);
+    border-radius: 24px;
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.12), rgba(15, 23, 42, 0.22));
+}
+
+body.light .support-intro {
+    background: linear-gradient(135deg, rgba(96, 165, 250, 0.16), rgba(255, 255, 255, 0.92));
+}
+
+.support-intro-copy h2,
+.section-heading h2 {
+    margin: 0 0 0.5rem;
+}
+
+.support-intro-copy p,
+.section-heading p,
+.faq-item p {
+    margin: 0;
+    line-height: 1.65;
+    color: var(--text-muted);
+}
+
+body.light .support-intro-copy p,
+body.light .section-heading p,
+body.light .faq-item p {
+    color: var(--text-muted-light);
+}
+
+.support-cta {
+    flex-shrink: 0;
+}
+
+.faq-section {
+    display: grid;
+    gap: 1rem;
+}
+
+.faq-list {
+    display: grid;
+    gap: 1rem;
+}
+
+.faq-item {
+    border: 1px solid rgba(148, 163, 184, 0.28);
+    border-radius: 20px;
+    background: rgba(15, 23, 42, 0.45);
+    overflow: hidden;
+}
+
+body.light .faq-item {
+    background: rgba(255, 255, 255, 0.84);
+}
+
+.faq-item summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.15rem 1.35rem;
+    cursor: pointer;
+    list-style: none;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.faq-item summary::-webkit-details-marker {
+    display: none;
+}
+
+.faq-item summary::after {
+    content: "+";
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.75rem;
+    height: 1.75rem;
+    border-radius: 999px;
+    background: rgba(96, 165, 250, 0.14);
+    color: var(--accent);
+    font-size: 1.1rem;
+    line-height: 1;
+    flex-shrink: 0;
+}
+
+body.light .faq-item summary::after {
+    color: var(--accent-strong);
+}
+
+.faq-item[open] summary::after {
+    content: "-";
+}
+
+.faq-item p {
+    padding: 0 1.35rem 1.35rem;
+}
+
+@media (max-width: 720px) {
+    .support-intro {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .support-cta {
+        justify-content: center;
+    }
+}

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Puzzle Royale • Support</title>
+    <link rel="stylesheet" href="/css/variables.css">
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/components.css">
+    <link rel="stylesheet" href="/css/layout.css">
+    <link rel="stylesheet" href="/privacy/css/legal.css">
+    <link rel="stylesheet" href="/support/css/support.css">
+</head>
+
+<body>
+    <div class="legal-shell support-shell">
+        <button class="theme-toggle" type="button" aria-pressed="false" title="Toggle light or dark theme">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M12 18.25A6.25 6.25 0 1 0 12 5.75A6.25 6.25 0 1 0 12 18.25Z" stroke="currentColor"
+                    stroke-width="1.5"></path>
+                <path d="M12 2V3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+                <path d="M12 20.5V22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+                <path d="M4.21997 4.21997L5.27997 5.27997" stroke="currentColor" stroke-width="1.5"
+                    stroke-linecap="round"></path>
+                <path d="M18.72 18.72L19.78 19.78" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+                </path>
+                <path d="M2 12H3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+                <path d="M20.5 12H22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+                <path d="M4.21997 19.78L5.27997 18.72" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+                </path>
+                <path d="M18.72 5.27997L19.78 4.21997" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+                </path>
+            </svg>
+            Theme
+        </button>
+        <header>
+            <a href="/" class="back-link">&larr; Back to Home</a>
+            <h1>Support</h1>
+            <p>Find quick answers below. If you still need help, send a support email and include the device, OS,
+                and issue details.</p>
+        </header>
+        <main>
+            <section class="support-intro" aria-labelledby="support-overview-title">
+                <div class="support-intro-copy">
+                    <h2 id="support-overview-title">How can we help?</h2>
+                    <p>Start with the FAQ. When you need direct help, use the support button so your email app opens
+                        with Puzzle Royale support prefilled.</p>
+                </div>
+                <a class="btn btn-primary support-cta"
+                    href="mailto:mccarrenapps@gmail.com?subject=Puzzle%20Royale%20Support">Contact Support</a>
+            </section>
+
+            <section class="faq-section" aria-labelledby="faq-title">
+                <div class="section-heading">
+                    <h2 id="faq-title">FAQ</h2>
+                    <p>This section is ready to expand as more common questions come in.</p>
+                </div>
+                <div class="faq-list">
+                    <details class="faq-item" open>
+                        <summary>How do I play multiplayer?</summary>
+                        <p>Multiplayer is currently only supported through the Android and iOS apps.</p>
+                    </details>
+                </div>
+            </section>
+        </main>
+        <footer>
+            <div class="footer-links">
+                <a href="/privacy/">Privacy Policy</a>
+                <a href="/terms/">Terms &amp; Conditions</a>
+                <a href="/support/" aria-current="page">Support</a>
+            </div>
+            <p>&copy; <span id="year"></span> Puzzle Royale. All rights reserved.</p>
+        </footer>
+    </div>
+    <script>
+        // Theme toggle logic
+        (function () {
+            const body = document.body;
+            const toggle = document.querySelector('.theme-toggle');
+            const prefersLight = window.matchMedia('(prefers-color-scheme: light)');
+            const applyTheme = (isLight) => {
+                body.classList.toggle('light', isLight);
+                toggle.setAttribute('aria-pressed', String(isLight));
+            };
+            applyTheme(prefersLight.matches);
+            prefersLight.addEventListener('change', (event) => applyTheme(event.matches));
+            toggle.addEventListener('click', () => {
+                const isLight = !body.classList.contains('light');
+                applyTheme(isLight);
+            });
+        })();
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+
+</html>

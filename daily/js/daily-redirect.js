@@ -3,9 +3,9 @@
 // ============================================
 const DAILY_CONFIG = {
     androidPackage: 'com.mccarrenapps.puzzleroyale',
-    iosAppId: 'YOUR_IOS_APP_ID',
+    iosAppId: '6762206683',
     playStoreUrl: 'https://play.google.com/store/apps/details?id=com.mccarrenapps.puzzleroyale',
-    appStoreUrl: 'https://apps.apple.com/app/idYOUR_IOS_APP_ID',
+    appStoreUrl: 'https://apps.apple.com/app/id6762206683',
     webAppUrl: 'https://app.puzzleroyale.app',
     deepLinkPath: '/#/daily'
 };

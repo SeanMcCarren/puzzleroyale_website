@@ -72,8 +72,7 @@ Create a file at `/u/index.html` on your marketing website that handles all `/u/
   <meta name="twitter:image" content="https://app.puzzleroyale.app/images/og-profile.png">
   
   <!-- iOS Smart App Banner (shows native "Open in App" banner on iOS Safari) -->
-  <!-- Replace YOUR_IOS_APP_ID with your actual App Store ID -->
-  <meta name="apple-itunes-app" content="app-id=YOUR_IOS_APP_ID">
+  <meta name="apple-itunes-app" content="app-id=6762206683">
   
   <style>
     * {
@@ -237,13 +236,13 @@ Create a file at `/u/index.html` on your marketing website that handles all `/u/
       androidPackage: 'com.tombo.puzzle_royale',
       
       // Your iOS App Store ID (numeric ID from App Store Connect)
-      iosAppId: 'YOUR_IOS_APP_ID',
+      iosAppId: '6762206683',
       
       // Play Store URL
       playStoreUrl: 'https://play.google.com/store/apps/details?id=com.tombo.puzzle_royale',
       
       // App Store URL
-      appStoreUrl: 'https://apps.apple.com/app/idYOUR_IOS_APP_ID',
+      appStoreUrl: 'https://apps.apple.com/app/id6762206683',
       
       // Flutter web app base URL
       webAppUrl: 'https://app.puzzleroyale.app/app',
@@ -398,7 +397,7 @@ import Head from 'next/head';
 const CONFIG = {
   androidPackage: 'com.tombo.puzzle_royale',
   playStoreUrl: 'https://play.google.com/store/apps/details?id=com.tombo.puzzle_royale',
-  appStoreUrl: 'https://apps.apple.com/app/idYOUR_IOS_APP_ID',
+  appStoreUrl: 'https://apps.apple.com/app/id6762206683',
   webAppUrl: 'https://app.puzzleroyale.app/app',
 };
 
@@ -444,7 +443,7 @@ export default function ProfileRedirect() {
     <>
       <Head>
         <title>View Profile - Puzzle Royale</title>
-        <meta name="apple-itunes-app" content="app-id=YOUR_IOS_APP_ID" />
+        <meta name="apple-itunes-app" content="app-id=6762206683" />
       </Head>
       
       <div className="container">

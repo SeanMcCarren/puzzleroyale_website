@@ -104,6 +104,41 @@ footer a:hover {
     margin-bottom: 1.5rem;
 }
 
+.footer-socials {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 1.25rem;
+}
+
+.social-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+    min-width: 7.25rem;
+    padding: 0.5rem 0.85rem;
+    border: 1px solid rgba(148, 163, 184, 0.25);
+    border-radius: 999px;
+    background: rgba(15, 23, 42, 0.18);
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.social-icon {
+    width: 0.95rem;
+    height: 0.95rem;
+    flex: 0 0 auto;
+}
+
+.social-link:hover {
+    color: var(--accent);
+    border-color: rgba(148, 163, 184, 0.45);
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .theme-toggle {
@@ -124,5 +159,13 @@ footer a:hover {
 
     .feature-grid {
         grid-template-columns: 1fr;
+    }
+
+    .footer-socials {
+        gap: 0.5rem;
+    }
+
+    .social-link {
+        min-width: 0;
     }
 }
