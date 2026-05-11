@@ -10,7 +10,7 @@ main {
     gap: 1.5rem;
     padding: clamp(1.35rem, 2.5vw, 1.8rem);
     border: 1px solid rgba(148, 163, 184, 0.28);
-    border-radius: 24px;
+    border-radius: var(--radius-md);
     background: linear-gradient(135deg, rgba(59, 130, 246, 0.12), rgba(15, 23, 42, 0.22));
 }
 
@@ -21,6 +21,9 @@ body.light .support-intro {
 .support-intro-copy h2,
 .section-heading h2 {
     margin: 0 0 0.5rem;
+    font-family: inherit;
+    font-size: 1.5rem;
+    line-height: 1.2;
 }
 
 .support-intro-copy p,
@@ -53,7 +56,7 @@ body.light .faq-item p {
 
 .faq-item {
     border: 1px solid rgba(148, 163, 184, 0.28);
-    border-radius: 20px;
+    border-radius: var(--radius-md);
     background: rgba(15, 23, 42, 0.45);
     overflow: hidden;
 }

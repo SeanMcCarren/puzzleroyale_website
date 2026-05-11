@@ -1,67 +1,79 @@
-/* Minimal store buttons styles for homepage */
+/* Store buttons */
 
 .store-buttons {
     display: flex;
-    gap: 12px;
+    gap: 0.75rem;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     flex-wrap: wrap;
 }
 
 .store-button {
+    position: relative;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
-    padding: 10px 18px;
-    border-radius: 10px;
+    gap: 0.65rem;
+    min-height: 50px;
+    padding: 0 1.1rem;
+    border-radius: var(--radius-md);
     border: 1px solid transparent;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 14px;
-    line-height: 1.2;
     color: white;
-    transition: all var(--transition-base);
+    font-size: 0.94rem;
+    font-weight: 900;
+    line-height: 1.2;
+    text-decoration: none;
+    overflow: hidden;
+    background-clip: padding-box;
+    box-shadow: var(--shadow-sm);
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast), background var(--transition-fast);
 }
 
 .store-icon {
     width: 20px;
     height: 20px;
+    flex: 0 0 auto;
 }
 
 .play-store {
-    background: linear-gradient(135deg, #34a853 0%, #4285f4 50%, #ea4335 100%);
+    background: #111827;
 }
 
 .app-store {
-    background: linear-gradient(135deg, #007AFF 0%, #5856D6 100%);
+    background: #0877d8;
+}
+
+.store-button:hover,
+.store-button:focus-visible {
+    box-shadow: var(--shadow-md);
 }
 
 .store-button-outline {
-    background: transparent;
+    background: rgba(255, 255, 255, 0.06);
     color: var(--text-primary);
-    border-color: rgba(148, 163, 184, 0.35);
+    border-color: var(--line);
+    box-shadow: none;
     backdrop-filter: blur(10px);
 }
 
 body.light .store-button-outline {
     color: var(--text-primary-light);
-    background: rgba(255, 255, 255, 0.35);
+    background: rgba(255, 255, 255, 0.72);
+    border-color: var(--line-light);
 }
 
 .store-button-outline:hover,
 .store-button-outline:focus-visible {
-    border-color: rgba(96, 165, 250, 0.5);
-    transform: translateY(-2px);
+    border-color: rgba(79, 149, 244, 0.58);
 }
 
 @media (max-width: 640px) {
     .store-buttons {
         flex-direction: column;
+        align-items: stretch;
     }
 
     .store-button {
         width: 100%;
-        justify-content: center;
     }
 }

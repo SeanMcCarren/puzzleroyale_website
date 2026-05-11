@@ -1,171 +1,392 @@
 /* Layout and Section Styles */
 
-/* Hero Section */
+main {
+    width: min(1180px, calc(100% - 32px));
+    margin: 0 auto;
+}
+
 .hero {
     position: relative;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
+    min-height: calc(82vh - 92px);
+    display: grid;
+    grid-template-columns: minmax(0, 820px);
     align-items: center;
     justify-content: center;
+    padding: 5rem 0 5rem;
     text-align: center;
-    padding: 8rem 2rem 4rem;
+}
+
+.hero-copy,
+.section,
+.download-section {
+    animation: fade-in-up 0.7s ease both;
+}
+
+.hero-copy {
+    max-width: 820px;
+}
+
+.eyebrow {
+    margin: 0 0 0.9rem;
+    color: var(--accent-mint);
+    font-size: 0.88rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0;
+}
+
+body.light .eyebrow {
+    color: var(--accent-strong);
+}
+
+.hero h1,
+.section-heading h2,
+.arena-copy h2,
+.download-section h2 {
+    font-family: "Sora", "Inter", sans-serif;
+    line-height: 0.98;
+    letter-spacing: 0;
 }
 
 .hero h1 {
-    font-size: clamp(3rem, 8vw, 6rem);
+    margin: 0 0 1.25rem;
+    font-size: 5rem;
     font-weight: 800;
-    margin: 0 0 1rem;
-    background: var(--accent-gradient-hero);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    letter-spacing: -0.02em;
-    animation: fade-in-up 0.8s ease both;
+    color: var(--text-primary);
 }
 
 body.light .hero h1 {
-    background: var(--accent-gradient-hero-light);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: var(--text-primary-light);
 }
 
-.hero .tagline {
-    font-size: clamp(1.25rem, 3vw, 1.75rem);
+.tagline {
+    max-width: 58ch;
+    margin: 0 auto 2rem;
     color: var(--text-muted);
-    margin: 0 0 3rem;
-    max-width: 600px;
-    animation: fade-in-up 0.8s 0.1s ease both;
+    font-size: 1.18rem;
+    line-height: 1.72;
 }
 
-body.light .hero .tagline {
+body.light .tagline {
     color: var(--text-muted-light);
 }
 
 .cta-buttons {
     display: flex;
-    gap: 1.5rem;
+    align-items: center;
+    justify-content: center;
+    gap: 0.85rem;
+    flex-wrap: wrap;
+}
+
+.hero-metrics {
+    display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    animation: fade-in-up 0.8s 0.2s ease both;
+    gap: 0.75rem;
+    margin-top: 1.8rem;
 }
 
-/* Features Section */
-.features {
-    position: relative;
-    padding: var(--spacing-2xl) var(--spacing-md);
-    max-width: 1200px;
-    margin: 0 auto;
+.hero-metrics span {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    min-height: 38px;
+    padding: 0 0.75rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-muted);
+    font-size: 0.92rem;
 }
 
-.features h2 {
-    text-align: center;
-    font-size: clamp(2rem, 5vw, 3rem);
-    font-weight: 700;
-    margin: 0 0 4rem;
-    color: var(--accent);
+.hero-metrics strong {
+    color: var(--text-primary);
 }
 
-body.light .features h2 {
-    color: var(--accent-strong);
+body.light .hero-metrics span {
+    background: rgba(255, 255, 255, 0.7);
+    border-color: var(--line-light);
+    color: var(--text-muted-light);
+}
+
+body.light .hero-metrics strong {
+    color: var(--text-primary-light);
+}
+
+.section {
+    padding: 5.5rem 0;
+}
+
+.section-heading {
+    max-width: 780px;
+    margin-bottom: 2rem;
+}
+
+.section-heading.compact {
+    margin-bottom: 1.35rem;
+}
+
+.section-heading h2,
+.arena-copy h2,
+.download-section h2 {
+    margin: 0;
+    font-size: 3rem;
+    font-weight: 800;
+}
+
+.section-heading p:not(.eyebrow),
+.arena-copy p:not(.eyebrow),
+.download-section p:not(.eyebrow) {
+    max-width: 62ch;
+    margin: 1rem 0 0;
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    line-height: 1.7;
+}
+
+body.light .section-heading p:not(.eyebrow),
+body.light .arena-copy p:not(.eyebrow),
+body.light .download-section p:not(.eyebrow) {
+    color: var(--text-muted-light);
 }
 
 .feature-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: var(--spacing-md);
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
 }
 
-/* Footer */
-footer {
-    position: relative;
-    padding: var(--spacing-lg) var(--spacing-md) var(--spacing-md);
-    text-align: center;
-    color: var(--text-muted);
-    border-top: 1px solid rgba(148, 163, 184, 0.15);
+.games-section {
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
 }
 
-footer a {
-    color: var(--accent);
-    text-decoration: none;
-    transition: opacity var(--transition-fast);
+body.light .games-section {
+    border-color: var(--line-light);
 }
 
-footer a:hover {
-    opacity: 0.8;
-}
-
-.footer-links {
-    display: flex;
-    gap: var(--spacing-md);
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-bottom: 1.5rem;
-}
-
-.footer-socials {
-    display: flex;
+.game-list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
     gap: 0.75rem;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-bottom: 1.25rem;
 }
 
-.social-link {
+.game-list span {
+    display: grid;
+    place-items: center;
+    min-height: 92px;
+    padding: 0.75rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md);
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-primary);
+    font-family: "Sora", "Inter", sans-serif;
+    font-weight: 700;
+    text-align: center;
+}
+
+.game-list span:nth-child(3n + 1) {
+    border-color: rgba(79, 149, 244, 0.46);
+}
+
+.game-list span:nth-child(3n + 2) {
+    border-color: rgba(45, 212, 191, 0.42);
+}
+
+.game-list span:nth-child(3n + 3) {
+    border-color: rgba(249, 115, 99, 0.4);
+}
+
+body.light .game-list span {
+    background: rgba(255, 255, 255, 0.72);
+    color: var(--text-primary-light);
+    border-color: var(--line-light);
+}
+
+.arena-section {
+    display: grid;
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    gap: 2rem;
+    align-items: start;
+}
+
+.arena-steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+.arena-steps article {
+    min-height: 220px;
+    padding: 1.35rem;
+}
+
+.arena-steps span {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 0.45rem;
-    min-width: 7.25rem;
-    padding: 0.5rem 0.85rem;
-    border: 1px solid rgba(148, 163, 184, 0.25);
-    border-radius: 999px;
-    background: rgba(15, 23, 42, 0.18);
-    color: var(--text-muted);
-    font-size: 0.85rem;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
+    min-height: 34px;
+    margin-bottom: 1rem;
+    padding: 0 0.65rem;
+    border-radius: var(--radius-sm);
+    background: rgba(79, 149, 244, 0.16);
+    color: var(--accent-mint);
+    font-weight: 900;
 }
 
-.social-icon {
-    width: 0.95rem;
-    height: 0.95rem;
-    flex: 0 0 auto;
+body.light .arena-steps span {
+    color: var(--accent-strong);
+    background: rgba(79, 149, 244, 0.12);
 }
 
-.social-link:hover {
-    color: var(--accent);
-    border-color: rgba(148, 163, 184, 0.45);
+.download-section {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 1.5rem;
+    margin: 2rem 0 5rem;
+    padding: 1.5rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md);
+    background: linear-gradient(135deg, rgba(79, 149, 244, 0.18), rgba(45, 212, 191, 0.08), rgba(249, 115, 99, 0.12));
+    box-shadow: var(--shadow-md);
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    .theme-toggle {
-        top: var(--spacing-sm);
-        right: var(--spacing-sm);
+body.light .download-section {
+    border-color: var(--line-light);
+    background: linear-gradient(135deg, rgba(79, 149, 244, 0.12), rgba(45, 212, 191, 0.08), rgba(249, 115, 99, 0.08));
+}
+
+.download-logo {
+    width: 82px;
+    height: 82px;
+}
+
+.download-section h2 {
+    font-size: 2.25rem;
+}
+
+.download-buttons {
+    justify-content: flex-end;
+}
+
+@media (hover: hover) and (pointer: fine) {
+
+    .store-button:hover,
+    .store-button:focus-visible,
+    .game-list span:hover {
+        transform: translateY(-2px);
     }
 
-    .cta-buttons {
-        flex-direction: column;
-        width: 100%;
-        max-width: 300px;
+}
+
+@media (max-width: 1080px) {
+    .hero {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding-top: 3rem;
     }
 
-    .btn {
-        width: 100%;
-        justify-content: center;
+    .hero-copy {
+        max-width: 760px;
     }
 
-    .feature-grid {
+    .hero h1 {
+        font-size: 4rem;
+    }
+
+    .feature-grid,
+    .game-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .arena-section,
+    .download-section {
         grid-template-columns: 1fr;
     }
 
-    .footer-socials {
-        gap: 0.5rem;
+    .download-buttons {
+        justify-content: flex-start;
+    }
+}
+
+@media (max-width: 760px) {
+    main {
+        width: min(100% - 24px, 1180px);
     }
 
-    .social-link {
-        min-width: 0;
+    .hero {
+        min-height: auto;
+        padding: 2.25rem 0 3rem;
+    }
+
+    .hero h1 {
+        font-size: 3rem;
+    }
+
+    .tagline {
+        font-size: 1rem;
+        line-height: 1.58;
+        margin-bottom: 1.35rem;
+    }
+
+    .cta-buttons,
+    .store-buttons {
+        width: 100%;
+    }
+
+    .section {
+        padding: 4rem 0;
+    }
+
+    .section-heading h2,
+    .arena-copy h2 {
+        font-size: 2.25rem;
+    }
+
+    .feature-grid,
+    .game-list,
+    .arena-steps {
+        grid-template-columns: 1fr;
+    }
+
+    .game-list span {
+        min-height: 70px;
+    }
+}
+
+@media (max-width: 460px) {
+    .hero h1 {
+        font-size: 2.55rem;
+    }
+
+    .download-section {
+        padding: 1rem;
+    }
+
+    .download-section h2 {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 360px) {
+    .hero {
+        padding: 2rem 0 2.25rem;
+    }
+
+    .hero h1 {
+        font-size: 2.35rem;
+        margin-bottom: 0.85rem;
+    }
+
+    .eyebrow {
+        font-size: 0.78rem;
+        margin-bottom: 0.65rem;
+    }
+
+    .hero-metrics,
+    .store-button-outline {
+        display: none;
     }
 }
